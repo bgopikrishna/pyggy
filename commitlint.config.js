@@ -30,7 +30,7 @@ module.exports = {
                 'revert',
                 'style',
                 'test',
-                'daily'
+                'setup'
             ]
         ]
     }

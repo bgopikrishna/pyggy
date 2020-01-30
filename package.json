@@ -1,6 +1,6 @@
 {
     "name": "pygyy",
-    "version": "0.1.0.0",
+    "version": "0.0.1",
     "description": "A goal tracker",
     "main": "index.js",
     "repository": "https://github.com/bgopikrishna/pyggy",
@@ -8,11 +8,16 @@
     "license": "MIT",
     "private": false,
     "scripts": {
-        "server": "nodemon --exec babel-node server.js"
+        "server": "nodemon --exec babel-node server.js",
+        "client": "npm start --prefix client",
+        "start": "concurrently \"npm start --prefix client\" \"npm run server\"",
+        "build:client": "npm run build --prefix client"
     },
     "dependencies": {
         "@types/express": "^4.17.2",
         "bcrypt": "^3.0.7",
+        "body-parser": "^1.19.0",
+        "concurrently": "^5.1.0",
         "dotenv": "^8.2.0",
         "express": "^4.17.1"
     },
