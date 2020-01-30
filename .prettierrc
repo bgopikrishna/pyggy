@@ -3,5 +3,6 @@
     "jsxBracketSameLine": true,
     "semi": false,
     "printWidth": 80,
-    "arrowParens": "always"
+    "arrowParens": "always",
+    "tabWidth": 4
 }
