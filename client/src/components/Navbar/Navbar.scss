@@ -1,0 +1,18 @@
+.navbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 638px;
+
+    &__list {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        &__item {
+            display: flex !important;
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+}

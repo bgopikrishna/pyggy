@@ -1,30 +1,19 @@
-import React, {useState, useEffect} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import axios from 'axios'
+import React, { useState, useEffect } from 'react'
+import logo from './logo.svg'
+import './App.css'
+import Navbar from './components/Navbar/Navbar'
+import Routes from './routes'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 function App() {
-
-    const [data, setData] = useState('');
-
-
-   
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios(
-        '/api'
-      );
-      console.log(result, result.data)
-      setData(result.data);
-    };
-    fetchData();
-  }, []);
-
-  return (
-    <div className="App">
-      {/* {{'data'}} */}
-    </div>
-  );
+    return (
+        <Router>
+            <div className="wrapper">
+                <Routes></Routes>
+                <Navbar></Navbar>
+            </div>
+        </Router>
+    )
 }
 
-export default App;
+export default App
