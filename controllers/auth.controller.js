@@ -5,6 +5,7 @@ import { compare as comparePassword } from 'bcrypt'
 import genHasedPass from '../utils/hash'
 import User from '../models/User/user.model'
 import createItem from '../utils/createItem'
+import { validatorForSignUp, validatorForSignIn } from '../utils/validators'
 
 export const signInUser = async (req, res) => {
     const userObj = req.body
@@ -12,7 +13,7 @@ export const signInUser = async (req, res) => {
     const validated = validatorForSignIn(userObj)
 
     if (validated.error) {
-        return res.status(400).send(validated.error.message)
+        return res.status(400).send(validated.error)
     }
 
     const { email, password } = validated.value
@@ -38,7 +39,7 @@ export const signUpUser = async (req, res) => {
     const validated = validatorForSignUp(req.body)
 
     if (validated.error) {
-        return res.status(400).send(validated.error.message)
+        return res.status(400).send(validated.error)
     }
 
     let { name, email, password } = validated.value
@@ -53,51 +54,6 @@ export const signUpUser = async (req, res) => {
             email: user.email
         })
     } catch (error) {
-        res.status(404).send(error.message)
+        res.status(404).send(error)
     }
-}
-
-/**
- * A Joi Validator which validates the user details sent from client for signIn
- *
- * @param {*} user - User Details
- * @returns {*} user - validated user
- */
-function validatorForSignIn(user) {
-    const schema = Joi.object({
-        email: Joi.string()
-            .email()
-            .required(),
-        password: Joi.string()
-            .trim()
-            .min(6)
-            .required()
-    })
-    const validated = schema.validate(user)
-    return validated
-}
-
-/**
- * A Joi Validator which validates the user details sent from client for sign up
- *
- * @param {*} user - User Details
- * @returns {*} user - validated user
- */
-function validatorForSignUp(user) {
-    const schema = Joi.object({
-        name: Joi.string()
-            .trim()
-            .required()
-            .min(2),
-        email: Joi.string()
-            .trim()
-            .email()
-            .required(),
-        password: Joi.string()
-            .trim()
-            .min(6)
-            .required()
-    })
-    const result = schema.validate(user)
-    return result
 }

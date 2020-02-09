@@ -5,7 +5,7 @@ const router = Router()
 
 router
     .get('/', getAllGoals)
-    .post('/:goalId', createAGoal)
+    .post('/', createAGoal)
     .put('/:goalId', updateAGoal)
     .delete('/:goalId', deleteAGoal)
 
