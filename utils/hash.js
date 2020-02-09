@@ -1,9 +1,9 @@
 import { genSalt, hash } from 'bcrypt'
 
-async function getHash() {
+async function genHasedPass(password) {
     const salt = await genSalt(10)
-    const hashed = await hash(process.env.PASS_HASH, salt)
+    const hashed = await hash(password, salt)
     return hashed
 }
 
-export default getHash()
+export default genHasedPass

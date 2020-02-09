@@ -1,10 +1,10 @@
 import { Router } from 'express'
-import { getAllGoals, createAGoal, updateAGoal, deleteAGoal } from '../../controllers/goal'
+import { getAllGoals, createAGoal, updateAGoal, deleteAGoal } from '../../controllers/goal.controller'
 
 const router = Router()
 
 router
-    .get('/:userId', getAllGoals)
+    .get('/', getAllGoals)
     .post('/:goalId', createAGoal)
     .put('/:goalId', updateAGoal)
     .delete('/:goalId', deleteAGoal)

@@ -18,6 +18,10 @@ const goalSchema = new Schema({
         type: Boolean,
         default: false
     },
+    archived: {
+        type: Boolean,
+        default: false
+    },
     user: {
         type: Schema.Types.ObjectId,
         ref: 'Users'

@@ -19,6 +19,8 @@
         "class-methods-use-this": "off",
         "consistent-return": "off",
         "import/no-unresolved": "off",
-        "import/extensions": "off"
+        "import/extensions": "off",
+        "no-use-before-define": "off",
+        "import/no-named-as-default": "off"
     }
 }

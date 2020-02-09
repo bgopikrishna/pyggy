@@ -6,7 +6,8 @@ import jwt from 'jsonwebtoken'
 const userSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     email: {
         type: String,
@@ -25,7 +26,7 @@ const userSchema = new Schema({
 
 // eslint-disable-next-line func-names
 userSchema.methods.generateAuthToken = function() {
-    const token = jwt.sign({ _id: this._id }, process.env.JWT_KEY)
+    const token = jwt.sign({ id: this._id }, process.env.JWT_KEY)
     return token
 }
 
