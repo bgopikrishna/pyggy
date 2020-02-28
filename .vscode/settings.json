@@ -1,4 +1,4 @@
 {
-    "eslint.codeActionsOnSave.mode": "problems",
+    "eslint.codeActionsOnSave.mode": "all",
     "editor.formatOnSave": true
 }

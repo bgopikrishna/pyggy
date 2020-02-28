@@ -13,7 +13,7 @@ export const signInUser = async (req, res) => {
     const validated = validatorForSignIn(userObj)
 
     if (validated.error) {
-        return res.status(400).send(validated.error)
+        return res.status(400).send(validated.message)
     }
 
     const { email, password } = validated.value
