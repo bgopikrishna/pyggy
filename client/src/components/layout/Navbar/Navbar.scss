@@ -1,0 +1,13 @@
+.nav-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+@media (min-width: 900px) {
+    .nav-wrapper {
+        max-width: 480px;
+        left: auto;
+        right: auto;
+    }
+}
