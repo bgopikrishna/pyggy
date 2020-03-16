@@ -25,6 +25,17 @@ const Navbar = () => {
                         <span>Search</span>
                     </a>
                 </li>
+
+                <li className="column">
+                    <a
+                        href="/"
+                        className="is-primary has-text-centered w-100 is-flex justify-content-center has-padding-10 has-background-primary	 has-text-light">
+                        <span className="icon has-margin-auto">
+                            <i className="material-icons">add_circle</i>{' '}
+                        </span>{' '}
+                    </a>
+                </li>
+
                 <li className="column">
                     <a
                         href="/"
@@ -35,6 +46,7 @@ const Navbar = () => {
                         <span>List</span>
                     </a>
                 </li>
+
                 <li className="column">
                     <a
                         href="/"

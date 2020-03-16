@@ -8,15 +8,14 @@
     "license": "MIT",
     "private": false,
     "scripts": {
-        "server": "nodemon --exec babel-node server.js",
+        "server": "export NODE_ENV=developement && nodemon --exec babel-node server.js",
         "client": "npm start --prefix client",
         "start": "concurrently \"npm start --prefix client\" \"npm run server\"",
-        "build:client": "npm run build --prefix client"
+        "build:client": "npm run build --prefix client",
+        "start:prod": "npm run build:client && export NODE_ENV=production nodemon --exec babel-node server.js"
     },
     "dependencies": {
         "@hapi/joi": "^17.1.0",
-        "@types/express": "^4.17.2",
-        "axios": "^0.19.2",
         "bcrypt": "^3.0.7",
         "body-parser": "^1.19.0",
         "concurrently": "^5.1.0",

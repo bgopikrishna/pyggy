@@ -1,11 +1,15 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
+import AuthenticatedRoutes from './Routes/AuthenticatedRoutes';
 
 function App() {
     return (
-        <Layout>
-            <span>App</span>
-        </Layout>
+        <Router>
+            <Layout>
+                <AuthenticatedRoutes></AuthenticatedRoutes>
+            </Layout>
+        </Router>
     );
 }
 

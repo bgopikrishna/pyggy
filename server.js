@@ -1,28 +1,30 @@
-import dotenv from 'dotenv'
-import express from 'express'
-import cors from 'cors'
-import startMongoose from './utils/mongoose'
-import goalRouter from './routes/goals/goal.route'
-import authRouter from './routes/authentication/auth.route'
-import auth from './middlewares/auth.middleware'
+import dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
+import startMongoose from './utils/mongoose';
+import goalRouter from './routes/goals/goal.route';
+import authRouter from './routes/authentication/auth.route';
+import auth from './middlewares/auth.middleware';
 
-dotenv.config()
+dotenv.config();
 
-const app = express()
+const app = express();
 
-app.use(cors())
+app.use(cors());
 
-app.use(express.urlencoded())
+app.use(express.urlencoded());
 
-app.use(express.json())
+app.use(express.json());
 
-startMongoose()
+startMongoose();
 
 app.get('/api', (req, res) => {
-    res.send('Welcome to Pyggy')
-})
+    res.send('Welcome to Pyggy');
+});
 
-app.use('/api/auth', authRouter)
-app.use('/api/goals', auth, goalRouter)
+console.log('Environment', process.env.NODE_ENV);
 
-app.listen(5000, () => console.log('Example app listening on port 5000!'))
+app.use('/api/auth', authRouter);
+app.use('/api/goals', auth, goalRouter);
+
+app.listen(5000, () => console.log('Example app listening on port 5000!'));
