@@ -5,6 +5,7 @@ import startMongoose from './utils/mongoose';
 import goalRouter from './routes/goals/goal.route';
 import authRouter from './routes/authentication/auth.route';
 import auth from './middlewares/auth.middleware';
+import userRouter from './routes/user/user.route';
 
 dotenv.config();
 
@@ -26,5 +27,6 @@ console.log('Environment', process.env.NODE_ENV);
 
 app.use('/api/auth', authRouter);
 app.use('/api/goals', auth, goalRouter);
+app.use('/api/user', auth, userRouter);
 
 app.listen(5000, () => console.log('Example app listening on port 5000!'));

@@ -6,14 +6,14 @@ import SignUp from '../../components/pages/SignUp/SignUp';
 const UnAuthenticatedRoutes = () => {
     return (
         <Switch>
-            <Route path="/" exact>
-                <Redirect to="/signin"></Redirect>
-            </Route>
             <Route path="/signin">
                 <SignIn></SignIn>
             </Route>
             <Route path="/signup">
                 <SignUp></SignUp>
+            </Route>
+            <Route>
+                <Redirect to="/signin"></Redirect>
             </Route>
         </Switch>
     );

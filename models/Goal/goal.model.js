@@ -1,4 +1,5 @@
-import { Schema, model } from 'mongoose'
+/* eslint-disable func-names */
+import { Schema, model } from 'mongoose';
 
 const goalSchema = new Schema({
     name: {
@@ -25,10 +26,21 @@ const goalSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'Users'
+    },
+    // eslint-disable-next-line func-names
+    completed: {
+        type: Boolean,
+        default: function() {
+            return this.saved === this.target;
+        }
+    },
+    color: {
+        type: String,
+        default: 'Black'
     }
-})
+});
 
-const Goal = model('Goals', goalSchema)
+const Goal = model('Goals', goalSchema);
 
-export { Goal, goalSchema }
-export default Goal
+export { Goal, goalSchema };
+export default Goal;

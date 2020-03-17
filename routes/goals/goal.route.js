@@ -1,12 +1,12 @@
-import { Router } from 'express'
-import { getAllGoals, createAGoal, updateAGoal, deleteAGoal } from '../../controllers/goal.controller'
+import { Router } from 'express';
+import { getAllGoals, createAGoal, updateAGoal, deleteAGoal } from '../../controllers/goal.controller';
 
-const router = Router()
+const router = Router();
 
 router
     .get('/', getAllGoals)
     .post('/', createAGoal)
     .put('/:goalId', updateAGoal)
-    .delete('/:goalId', deleteAGoal)
+    .delete('/:goalId', deleteAGoal);
 
-export default router
+export default router;

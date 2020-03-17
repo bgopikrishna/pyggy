@@ -1,39 +1,18 @@
-import React, { useState, useContext } from 'react';
-import { doSignIn, storeAuthKey } from './auth-helpers';
-import { Redirect } from 'react-router-dom';
-import { useLocalStorage } from '../hooks/useLocalStorage';
-import { getItemFromLocalStorage } from './other';
+import React from 'react';
+import { doSignIn, doSignUp, logout as doLogout } from './auth-helpers';
+import { useAsync } from 'react-async';
+import { bootStrapUserData } from './user-data';
 
 export const AuthContext = React.createContext();
 
 export const AuthProvider = (props) => {
-    const [user, setUser] = useState();
+    const { data: user, reload } = useAsync({ promiseFn: bootStrapUserData });
 
-    const login = (email, password) =>
-        doSignIn(email, password).then((res) => {
-            console.log(res);
-            storeAuthKey(res.headers['x-authtoken']);
+    const login = (formData) => doSignIn(formData).then(reload);
 
-            setUser(res.data);
-        });
+    const signup = (formData) => doSignUp(formData).then(reload);
 
-    const signup = (name, email, password) => {};
+    const logout = () => doLogout().then(reload);
 
-    const logout = () => {};
-
-    return (
-        <AuthContext.Provider
-            value={{ user, login, signup, logout, setUser }}
-            {...props}></AuthContext.Provider>
-    );
-};
-
-export const useAuth = () => {
-    const context = useContext(AuthContext);
-
-    if (context === undefined) {
-        throw new Error(`useAuth must be used within a AuthProvider`);
-    }
-
-    return context;
+    return <AuthContext.Provider value={{ user, login, signup, logout }} {...props}></AuthContext.Provider>;
 };

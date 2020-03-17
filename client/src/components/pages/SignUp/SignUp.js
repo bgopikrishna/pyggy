@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
 import Input from '../../common/input/Input';
+import useAuth from '../../../hooks/useAuth';
 
 const SignUp = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { signup } = useAuth();
+
+    const [loader, setLoader] = useState(false);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setLoader(() => true);
+        signup({ name, email, password });
+    };
 
     return (
         <div className="auth-form">
-            <form className="has-padding-50 flex-column has-margin-top-50">
+            <form className="has-padding-50 flex-column has-margin-top-50" onSubmit={handleSubmit}>
                 <h3 className="title is-3 has-text-centered">Sign Up</h3>
                 <Input
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     type="text"
                     label="Name"
-                    error={true}
                     helpText="Please enter name"
                     placeholder="Enter your name"
                     icon="email"></Input>
@@ -25,7 +34,6 @@ const SignUp = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     type="email"
                     label="Email"
-                    error={true}
                     helpText="Please enter correct email"
                     placeholder="Enter your email"
                     icon="email"></Input>
@@ -38,7 +46,7 @@ const SignUp = () => {
                     icon="lock"
                     label="Password"></Input>
 
-                <button class="button is-primary has-margin-top-20">Sign Up</button>
+                <button className={`button is-primary has-margin-top-20 ${loader ? 'is-loading' : ''}`}>Sign Up</button>
             </form>
         </div>
     );

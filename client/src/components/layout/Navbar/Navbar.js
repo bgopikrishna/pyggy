@@ -1,61 +1,62 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './Navbar.scss';
 
 const Navbar = () => {
     return (
         <div className="nav-wrapper w-100">
-            <ul className="columns is-gapless is-mobile">
+            <ul className="columns is-gapless is-mobile has-background-white-ter">
                 <li className="column">
-                    <a
-                        href="/"
-                        className="is-primary has-text-centered w-100 is-flex justify-content-center has-padding-10 has-background-primary	 has-text-light">
-                        <span className="icon has-margin-right-5">
+                    <NavLink
+                        to="/home"
+                        className="nav-link has-text-centered w-100 is-flex justify-content-center has-padding-10 has-text-black-ter">
+                        <span className="icon ">
                             <i className="material-icons">home</i>
                         </span>{' '}
-                        <span>Home</span>
-                    </a>
+                        {/* <span>Home</span> */}
+                    </NavLink>
                 </li>
                 <li className="column">
-                    <a
-                        href="/"
-                        className="is-primary has-text-centered w-100 is-flex justify-content-center has-padding-10 has-background-primary	 has-text-light">
-                        <span className="icon has-margin-right-5">
+                    <NavLink
+                        to="/search"
+                        className="nav-link has-text-centered w-100 is-flex justify-content-center has-padding-10 has-text-black-ter">
+                        <span className="icon ">
                             <i className="material-icons">search</i>{' '}
                         </span>{' '}
-                        <span>Search</span>
-                    </a>
+                        {/* <span>Search</span> */}
+                    </NavLink>
                 </li>
 
                 <li className="column">
-                    <a
-                        href="/"
-                        className="is-primary has-text-centered w-100 is-flex justify-content-center has-padding-10 has-background-primary	 has-text-light">
+                    <button
+                        to="/"
+                        className="button is-borderless has-background-white-ter has-text-centered w-100 is-flex justify-content-center has-padding-10 has-text-black-ter">
                         <span className="icon has-margin-auto">
-                            <i className="material-icons">add_circle</i>{' '}
+                            <i className="material-icons is-size-1">add_circle</i>{' '}
                         </span>{' '}
-                    </a>
+                    </button>
                 </li>
 
                 <li className="column">
-                    <a
-                        href="/"
-                        className="is-primary has-text-centered w-100 is-flex justify-content-center has-padding-10 has-background-primary	 has-text-light">
-                        <span className="icon has-margin-right-5">
+                    <NavLink
+                        to="/list"
+                        className="nav-link has-text-centered w-100 is-flex justify-content-center has-padding-10 has-text-black-ter">
+                        <span className="icon ">
                             <i className="material-icons">format_list_bulleted</i>{' '}
                         </span>{' '}
-                        <span>List</span>
-                    </a>
+                        {/* <span>List</span> */}
+                    </NavLink>
                 </li>
 
                 <li className="column">
-                    <a
-                        href="/"
-                        className="is-primary has-text-centered w-100 is-flex justify-content-center has-padding-10 has-background-primary	 has-text-light">
-                        <span className="icon has-margin-right-5">
+                    <NavLink
+                        to="/acccount"
+                        className="nav-link has-text-centered w-100 is-flex justify-content-center has-padding-10 has-text-black-ter">
+                        <span className="icon ">
                             <i className="material-icons">account_circle</i>{' '}
                         </span>{' '}
-                        <span>Account</span>
-                    </a>
+                        {/* <span>Account</span> */}
+                    </NavLink>
                 </li>
             </ul>
         </div>
