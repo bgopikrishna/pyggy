@@ -2,7 +2,7 @@
     "singleQuote": true,
     "jsxBracketSameLine": true,
     "semi": true,
-    "printWidth": 120,
+    "printWidth": 80,
     "arrowParens": "always",
     "tabWidth": 4,
     "proseWrap": "preserve"

@@ -13,12 +13,14 @@ const SignIn = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoader(() => true);
-        login({ email, password });
+        login({ email, password }).then(() => setLoader(() => false));
     };
 
     return (
         <div className="auth-form ">
-            <form className="has-padding-50 flex-column has-margin-top-50" onSubmit={handleSubmit}>
+            <form
+                className="has-padding-50 flex-column has-margin-top-50"
+                onSubmit={handleSubmit}>
                 <h3 className="title is-3 has-text-centered">Sign In</h3>
 
                 <Input
@@ -38,7 +40,12 @@ const SignIn = () => {
                     icon="lock"
                     label="Password"></Input>
 
-                <button className={`button is-primary has-margin-top-20 ${loader ? 'is-loading' : ''}`}>Sign In</button>
+                <button
+                    className={`button is-primary has-margin-top-20 ${
+                        loader ? 'is-loading' : ''
+                    }`}>
+                    Sign In
+                </button>
 
                 {/* <p className="has-margin-30 is-size-6 has-text-grey-darker">or</p>
 

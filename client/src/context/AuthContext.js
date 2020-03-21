@@ -1,7 +1,7 @@
 import React from 'react';
-import { doSignIn, doSignUp, logout as doLogout } from './auth-helpers';
+import { doSignIn, doSignUp, logout as doLogout } from '../utils/auth-helpers';
 import { useAsync } from 'react-async';
-import { bootStrapUserData } from './user-data';
+import { bootStrapUserData } from '../utils/user-data';
 
 export const AuthContext = React.createContext();
 

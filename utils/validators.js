@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi'
+import Joi from '@hapi/joi';
 
 /**
  * A validator which checks the client data for creating a goal
@@ -22,13 +22,11 @@ export function validatorForCreateGoal(goalObj, user) {
         favourite: Joi.boolean()
             .default(false)
             .optional(),
-        archived: Joi.boolean()
-            .default(false)
-            .optional(),
-        user: Joi.string().required()
-    })
-    const validated = schema.validate({ ...goalObj, user })
-    return validated
+        user: Joi.string().required(),
+        color: Joi.string().optional()
+    });
+    const validated = schema.validate({ ...goalObj, user });
+    return validated;
 }
 
 /**
@@ -56,9 +54,9 @@ export function validatorForUpdateGoal(goalObj) {
             .optional(),
         favourite: Joi.boolean().optional(),
         archived: Joi.boolean().optional()
-    })
-    const validated = schema.validate(goalObj)
-    return validated
+    });
+    const validated = schema.validate(goalObj);
+    return validated;
 }
 
 /**
@@ -76,9 +74,9 @@ export function validatorForSignIn(user) {
             .trim()
             .min(6)
             .required()
-    })
-    const validated = schema.validate(user)
-    return validated
+    });
+    const validated = schema.validate(user);
+    return validated;
 }
 
 /**
@@ -101,7 +99,7 @@ export function validatorForSignUp(user) {
             .trim()
             .min(6)
             .required()
-    })
-    const result = schema.validate(user)
-    return result
+    });
+    const result = schema.validate(user);
+    return result;
 }

@@ -12,7 +12,7 @@ function App() {
 
     return (
         <Router>
-            <Layout>{user ? <AuthenticatedRoutes /> : <UnAuthenticatedRoutes />}</Layout>
+            {user ? <AuthenticatedRoutes /> : <UnAuthenticatedRoutes />}
         </Router>
     );
 }

@@ -1,5 +1,10 @@
 import { Router } from 'express';
-import { getAllGoals, createAGoal, updateAGoal, deleteAGoal } from '../../controllers/goal.controller';
+import {
+    getAllGoals,
+    createAGoal,
+    updateAGoal,
+    deleteAGoal
+} from '../../controllers/goal.controller';
 
 const router = Router();
 

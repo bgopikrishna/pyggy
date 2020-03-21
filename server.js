@@ -7,6 +7,8 @@ import authRouter from './routes/authentication/auth.route';
 import auth from './middlewares/auth.middleware';
 import userRouter from './routes/user/user.route';
 
+const path = require('path');
+
 dotenv.config();
 
 const app = express();
@@ -18,6 +20,12 @@ app.use(express.urlencoded());
 app.use(express.json());
 
 startMongoose();
+
+if (process.env.NODE_ENV === 'production') {
+    app.get('/', (res, req) => {
+        res.sendFile(path.join(`${__dirname}./client/build/index.html`));
+    });
+}
 
 app.get('/api', (req, res) => {
     res.send('Welcome to Pyggy');

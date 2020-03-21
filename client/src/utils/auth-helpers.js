@@ -1,33 +1,32 @@
-import axios from 'axios';
+import * as apiHelper from './api-helper';
 
 const tokenKey = 'x-key';
 
-export const doSignIn = async ({ email, password }) => {
-    return axios.post('/api/auth/signin', { email, password }).then(handleAuthResponse);
+export const doSignIn = ({ email, password }) => {
+    return apiHelper
+        .postData('/api/auth/signin', { email, password }, {}, false)
+        .then(handleAuthResponse);
 };
 
-export const doSignUp = async ({ name, email, password }) => {
-    return axios.post('/api/auth/signup', { name, email, password }).then(handleAuthResponse);
-};
-
-const storeAuthKey = (token) => {
-    window.localStorage.setItem(tokenKey, token);
-};
-
-const storeUserInfo = (user) => {
-    window.localStorage.setItem('user', JSON.stringify(user));
+export const doSignUp = ({ name, email, password }) => {
+    return apiHelper
+        .postData('/api/auth/signup', { name, email, password }, {}, false)
+        .then(handleAuthResponse);
 };
 
 export const getUser = () => {
     const token = getToken();
+
     if (!token) {
         return Promise.resolve(null);
     }
-    return axios
-        .get('/api/user/me', { headers: { 'x-authtoken': token } })
+    return apiHelper
+        .getData('/api/user/me')
         .then((res) => res.data)
         .catch((error) => {
-            logout();
+            if (process.env.NODE_ENV === 'production') {
+                logout();
+            }
             return Promise.reject(error);
         });
 };
@@ -41,9 +40,17 @@ export const getToken = () => {
     return window.localStorage.getItem(tokenKey);
 };
 
-function handleAuthResponse(res) {
+const handleAuthResponse = (res) => {
     const user = res.data;
     storeUserInfo(user);
     storeAuthKey(res.headers['x-authtoken']);
     return user;
-}
+};
+
+const storeAuthKey = (token) => {
+    window.localStorage.setItem(tokenKey, token);
+};
+
+const storeUserInfo = (user) => {
+    window.localStorage.setItem('user', JSON.stringify(user));
+};

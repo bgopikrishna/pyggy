@@ -6,6 +6,10 @@ const goalSchema = new Schema({
         type: String,
         required: true
     },
+    description: {
+        type: String,
+        default: ''
+    },
     labels: [{ type: String }],
     saved: {
         type: Number,

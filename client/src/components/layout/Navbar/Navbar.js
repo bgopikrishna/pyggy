@@ -32,7 +32,9 @@ const Navbar = () => {
                         to="/"
                         className="button is-borderless has-background-white-ter has-text-centered w-100 is-flex justify-content-center has-padding-10 has-text-black-ter">
                         <span className="icon has-margin-auto">
-                            <i className="material-icons is-size-1">add_circle</i>{' '}
+                            <i className="material-icons is-size-1">
+                                add_circle
+                            </i>{' '}
                         </span>{' '}
                     </button>
                 </li>
@@ -42,7 +44,9 @@ const Navbar = () => {
                         to="/list"
                         className="nav-link has-text-centered w-100 is-flex justify-content-center has-padding-10 has-text-black-ter">
                         <span className="icon ">
-                            <i className="material-icons">format_list_bulleted</i>{' '}
+                            <i className="material-icons">
+                                format_list_bulleted
+                            </i>{' '}
                         </span>{' '}
                         {/* <span>List</span> */}
                     </NavLink>
@@ -50,7 +54,7 @@ const Navbar = () => {
 
                 <li className="column">
                     <NavLink
-                        to="/acccount"
+                        to="/account"
                         className="nav-link has-text-centered w-100 is-flex justify-content-center has-padding-10 has-text-black-ter">
                         <span className="icon ">
                             <i className="material-icons">account_circle</i>{' '}
