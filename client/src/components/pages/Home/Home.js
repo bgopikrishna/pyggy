@@ -13,7 +13,7 @@ const Home = () => {
             ))}
 
             <Modal open={true}>
-                <div class="modal-content is-active">
+                <div className="modal-content is-active">
                     Any other Bulma elements you want
                 </div>
             </Modal>

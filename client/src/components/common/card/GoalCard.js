@@ -5,26 +5,29 @@ const GoalCard = ({ goal }) => {
     const { name, saved, target } = goal;
 
     return (
-        <div class="card has-margin-10">
-            <header class="card-header">
-                <p class="card-header-title">{name}</p>
-                <a href="#" class="card-header-icon" aria-label="more options">
-                    <span class="icon">
-                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+        <div className="card has-margin-10">
+            <header className="card-header">
+                <p className="card-header-title">{name}</p>
+                <a
+                    href="#"
+                    className="card-header-icon"
+                    aria-label="more options">
+                    <span className="icon">
+                        <span className="material-icons">expand_more</span>{' '}
                     </span>
                 </a>
             </header>
-            <div class="card-content">
-                <div class="content">
+            <div className="card-content">
+                <div className="content">
                     <p>Saved: {saved}</p>
                     <p>Target: {target}</p>
                 </div>
             </div>
-            <footer class="card-footer">
-                <a href="#" class="card-footer-item">
+            <footer className="card-footer">
+                <a href="#" className="card-footer-item">
                     Update
                 </a>
-                <a href="#" class="card-footer-item">
+                <a href="#" className="card-footer-item">
                     Edit
                 </a>
             </footer>

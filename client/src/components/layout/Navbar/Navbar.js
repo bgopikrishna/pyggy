@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import './Navbar.scss';
 
 const Navbar = () => {
@@ -28,15 +28,15 @@ const Navbar = () => {
                 </li>
 
                 <li className="column">
-                    <button
-                        to="/"
+                    <Link
+                        to="/create"
                         className="button is-borderless has-background-white-ter has-text-centered w-100 is-flex justify-content-center has-padding-10 has-text-black-ter">
                         <span className="icon has-margin-auto">
                             <i className="material-icons is-size-1">
                                 add_circle
                             </i>{' '}
                         </span>{' '}
-                    </button>
+                    </Link>
                 </li>
 
                 <li className="column">

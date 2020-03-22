@@ -6,6 +6,7 @@ import Home from '../../components/pages/Home/Home';
 import Layout from '../../components/layout/Layout';
 import GoalsProvider from '../../context/GoalsContext';
 import Account from '../../components/pages/Account/Account';
+import CreateGoal from '../../components/pages/CreateGoal/CreateGoal';
 
 const AuthenticatedRoutes = () => {
     return (
@@ -27,6 +28,10 @@ const AuthenticatedRoutes = () => {
                     </Route>
                     <Route path="/account">
                         <Account></Account>
+                    </Route>
+
+                    <Route path="/create">
+                        <CreateGoal></CreateGoal>
                     </Route>
                 </Switch>
             </Layout>

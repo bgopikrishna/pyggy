@@ -1,7 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({ value, type, onChange, placeholder, icon, label, hideLabel = false, helpText, error }) => {
+const Input = ({
+    value,
+    type,
+    onChange,
+    placeholder,
+    icon,
+    label,
+    hideLabel = false,
+    helpText,
+    error
+}) => {
     const isPassword = type === 'password' ? true : false;
     let inputType = type;
     let inputIcon = icon;
@@ -22,7 +32,7 @@ const Input = ({ value, type, onChange, placeholder, icon, label, hideLabel = fa
     return (
         <div className="field">
             {!hideLabel && (
-                <label className="label" htmlFor={label}>
+                <label className="label is-capitalized" htmlFor={label}>
                     {label}
                 </label>
             )}
@@ -41,7 +51,9 @@ const Input = ({ value, type, onChange, placeholder, icon, label, hideLabel = fa
                     </span>
                 )}
             </div>
-            {helpText && error && <p className={`help is-danger`}>{helpText}</p>}
+            {helpText && error && (
+                <p className={`help is-danger`}>{helpText}</p>
+            )}
         </div>
     );
 };
