@@ -1,8 +1,7 @@
 @charset "utf-8";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
-@import './variable.scss';
 @import '../../node_modules/bulma/bulma.sass';
 @import '../../node_modules/bulma-helpers/bulma-helpers.sass';
 @import './base.scss';
 @import './utils.scss';
-@import '~@yaireo/tagify/src/tagify.scss';
+@import './variable.scss';

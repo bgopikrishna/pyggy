@@ -8,7 +8,7 @@ const getData = async (url, config = {}) => {
     });
 };
 
-const postData = async (url, data = {}, config = {}, authorized = true) => {
+const postData = async (url, data, config = {}, authorized = true) => {
     if (authorized) {
         return axios.post(url, data, {
             ...config,

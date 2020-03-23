@@ -1,9 +1,9 @@
 async function createItem(Model, data) {
-    let created = new Model(data)
+    let created = new Model(data);
 
-    created = await created.save()
+    created = await created.save();
 
-    return created
+    return created;
 }
 
-export default createItem
+export default createItem;

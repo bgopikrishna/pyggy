@@ -10,9 +10,9 @@ const Input = ({
     label,
     hideLabel = false,
     helpText,
-    error
+    error,
+    required = false
 }) => {
-    const isPassword = type === 'password' ? true : false;
     let inputType = type;
     let inputIcon = icon;
 
@@ -36,7 +36,7 @@ const Input = ({
                     {label}
                 </label>
             )}
-            <div className="control has-icons-left">
+            <div className={'control ' + (icon ? 'has-icons-left' : '')}>
                 <input
                     className={`input ${error ? 'is-danger' : ''}`}
                     name={label}
@@ -44,6 +44,7 @@ const Input = ({
                     placeholder={placeholder}
                     value={value}
                     onChange={onChange}
+                    required={required}
                 />
                 {inputIcon && (
                     <span className="icon is-small is-left">

@@ -15,6 +15,7 @@ export function validatorForCreateGoal(goalObj, user) {
         target: Joi.number()
             .options({ convert: true })
             .required(),
+        description: Joi.string().optional(),
         labels: Joi.array()
             .items(Joi.string())
             .optional()

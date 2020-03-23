@@ -28,7 +28,7 @@ export const createAGoal = async (req, res) => {
 
     try {
         const goal = await createItem(Goal, { ...validated.value });
-        res.send({ goal: goal });
+        res.send({ goal });
     } catch (error) {
         res.status(500).send(error);
     }
@@ -73,7 +73,11 @@ export const deleteAGoal = async (req, res) => {
         if (goal) {
             res.send({ goal });
         } else {
-            res.status(400).send('Error Deleting Goal');
+            res.status(400).send({
+                error: {
+                    message: 'Error in Deleting the Goal'
+                }
+            });
         }
     } catch (error) {
         res.status(400).send(error);

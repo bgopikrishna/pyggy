@@ -1,7 +1,7 @@
 import React from 'react';
 import useTags, { TAG_ADD, TAG_REMOVE } from '../../../hooks/useTags';
 
-const TagsInput = ({ tags = [], onChange }) => {
+const TagsInput = ({ tags = [], onChange, placeholder, label = 'tags' }) => {
     const [state, dispatch] = useTags(tags);
 
     const addTag = (e) => {
@@ -43,9 +43,10 @@ const TagsInput = ({ tags = [], onChange }) => {
                 </span>
             ))}
             <input
-                class="input"
+                className="input"
                 type="text"
-                placeholder="Text input"
+                label={label}
+                placeholder={placeholder}
                 onKeyUp={addTag}
             />
         </div>
