@@ -21,12 +21,6 @@ app.use(express.json());
 
 startMongoose();
 
-app.use(express.static(path.join(__dirname, './client/build/')));
-
-// app.get('/', (res, req) => {
-//     res.sendFile(path.join(`${__dirname}/client/build/`));
-// });
-
 app.get('/api', (req, res) => {
     res.send('Welcome to Pyggy');
 });

@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const GoalCard = ({ goal }) => {
     const { name, saved, target } = goal;
@@ -24,9 +25,9 @@ const GoalCard = ({ goal }) => {
                 </div>
             </div>
             <footer className="card-footer">
-                <a href="#" className="card-footer-item">
+                <Link to={`/update/${goal._id}`} className="card-footer-item">
                     Update
-                </a>
+                </Link>
                 <a href="#" className="card-footer-item">
                     Edit
                 </a>

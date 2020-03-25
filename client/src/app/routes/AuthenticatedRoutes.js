@@ -7,6 +7,7 @@ import Layout from '../../components/layout/Layout';
 import GoalsProvider from '../../context/GoalsContext';
 import Account from '../../components/pages/Account/Account';
 import CreateGoal from '../../components/pages/CreateGoal/CreateGoal';
+import UpdateGoal from '../../components/pages/UpdateGoal/UpdateGoal';
 
 const AuthenticatedRoutes = () => {
     return (
@@ -32,6 +33,9 @@ const AuthenticatedRoutes = () => {
 
                     <Route path="/create">
                         <CreateGoal></CreateGoal>
+                    </Route>
+                    <Route path="/update/:id">
+                        <UpdateGoal></UpdateGoal>
                     </Route>
                 </Switch>
             </Layout>

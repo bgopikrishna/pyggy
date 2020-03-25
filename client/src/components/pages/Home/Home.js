@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
-import { GoalsContext } from '../../../context/GoalsContext';
+import React from 'react';
+import { useGoals } from '../../../context/GoalsContext';
 import GoalCard from '../../common/card/GoalCard';
 import Modal from '../../common/modal/Modal';
 
 const Home = () => {
-    const { goals } = useContext(GoalsContext);
+    const { goals } = useGoals();
 
     return (
         <section className="home">

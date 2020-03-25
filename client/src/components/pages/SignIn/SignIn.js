@@ -9,11 +9,17 @@ const SignIn = () => {
     const { login } = useAuth();
 
     const [loader, setLoader] = useState(false);
+    const [error, setError] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoader(() => true);
-        login({ email, password }).then(() => setLoader(() => false));
+        login({ email, password })
+            .then(() => setLoader(() => false))
+            .catch((err) => {
+                setLoader(false);
+                setError(true);
+            });
     };
 
     return (
@@ -46,6 +52,10 @@ const SignIn = () => {
                     }`}>
                     Sign In
                 </button>
+
+                {error && (
+                    <p className="has-text-danger">Invalid email or password</p>
+                )}
 
                 {/* <p className="has-margin-30 is-size-6 has-text-grey-darker">or</p>
 

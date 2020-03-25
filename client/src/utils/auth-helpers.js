@@ -5,7 +5,10 @@ const tokenKey = 'x-key';
 export const doSignIn = ({ email, password }) => {
     return apiHelper
         .postData('/api/auth/signin', { email, password }, {}, false)
-        .then(handleAuthResponse);
+        .then(handleAuthResponse)
+        .catch((err) => {
+            throw new Error(err);
+        });
 };
 
 export const doSignUp = ({ name, email, password }) => {

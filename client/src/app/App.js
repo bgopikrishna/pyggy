@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Layout from '../components/layout/Layout';
 import AuthenticatedRoutes from './routes/AuthenticatedRoutes';
 import UnAuthenticatedRoutes from './routes/UnAuthenticatedRoutes';
 import useAuth from '../hooks/useAuth';
+import { ToastProvider } from '../components/common/Toast';
 
 function App() {
     const { user } = useAuth();
@@ -11,9 +11,11 @@ function App() {
     console.log(user);
 
     return (
-        <Router>
-            {user ? <AuthenticatedRoutes /> : <UnAuthenticatedRoutes />}
-        </Router>
+        <ToastProvider>
+            <Router>
+                {user ? <AuthenticatedRoutes /> : <UnAuthenticatedRoutes />}
+            </Router>
+        </ToastProvider>
     );
 }
 

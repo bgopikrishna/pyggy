@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import Input from '../input/Input';
 import useSetState from '../../../hooks/useSetState';
 import TagsInput from '../TagsInput/TagsInput';
-import Dropdown from '../Dropdown/Dropdown';
 import { GOAL_COLORS } from '../../../constants';
 import './CreateGoalForm.scss';
 
@@ -19,7 +18,8 @@ const defaultState = {
 const CreateGoalForm = ({
     goal = defaultState,
     handleSubmit,
-    isLoading = false
+    isLoading = false,
+    mode = 'create'
 }) => {
     const [goalObj, setState] = useSetState(goal);
 
@@ -37,8 +37,10 @@ const CreateGoalForm = ({
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        console.log(goalObj);
-        handleSubmit(goalObj);
+
+        if (e.code !== 'Enter') {
+            handleSubmit(goalObj);
+        }
     };
 
     const { name, target, description, labels, favourite, color } = goalObj;
@@ -83,7 +85,7 @@ const CreateGoalForm = ({
                         placeholder="Description"
                     />
 
-                    <div className="field">
+                    {/* <div className="field">
                         <label
                             htmlFor="labels"
                             className="label is-capitalized">
@@ -94,7 +96,7 @@ const CreateGoalForm = ({
                             onChange={handleLabels}
                             label="labels"
                             placeholder="Labels"></TagsInput>
-                    </div>
+                    </div> */}
 
                     <div className="field has-margin-top-25">
                         <label
@@ -137,11 +139,11 @@ const CreateGoalForm = ({
 
                 <div className="box is-paddingless">
                     <button
-                        type="submit"
+                        onClick={handleOnSubmit}
                         className={`button is-primary is-full-width ${
                             isLoading ? 'is-loading' : ''
                         }`}>
-                        Create Goal
+                        {mode === 'create' ? 'Create Goal' : 'Update Goal'}
                     </button>
                 </div>
             </form>

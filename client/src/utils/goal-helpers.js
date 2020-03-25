@@ -8,4 +8,8 @@ const doCreateGoal = (goal) => {
     return apiHelper.postData('/api/goals', goal).then((res) => res.data.goal);
 };
 
-export { getGoals, doCreateGoal };
+const doUpdateGoal = (goal) => {
+    return apiHelper.putData(`/api/goals/${goal._id}`, goal).then((res) => res.data.goal)
+}
+
+export { getGoals, doCreateGoal, doUpdateGoal };
