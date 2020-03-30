@@ -11,6 +11,7 @@ import userRouter from './routes/user/user.route';
 dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 
@@ -38,4 +39,4 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
-app.listen(5000, () => console.log('Example app listening on port 5000!'));
+app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));
