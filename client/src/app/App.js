@@ -1,20 +1,27 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import AuthenticatedRoutes from './routes/AuthenticatedRoutes';
-import UnAuthenticatedRoutes from './routes/UnAuthenticatedRoutes';
 import useAuth from '../hooks/useAuth';
-import { ToastProvider } from '../components/common/Toast';
+import { ToastProvider, Toast } from '../components/common/Toast';
+
+const UnAuthenticatedRoutes = React.lazy(() =>
+    import('./routes/UnAuthenticatedRoutes')
+);
+const AuthenticatedRoutes = React.lazy(() =>
+    import('./routes/AuthenticatedRoutes')
+);
 
 function App() {
     const { user } = useAuth();
 
-    console.log(user);
-
     return (
         <ToastProvider>
             <Router>
-                {user ? <AuthenticatedRoutes /> : <UnAuthenticatedRoutes />}
+                <React.Suspense fallback={<p>Loading</p>}>
+                    {user ? <AuthenticatedRoutes /> : <UnAuthenticatedRoutes />}
+                </React.Suspense>
             </Router>
+
+            <Toast />
         </ToastProvider>
     );
 }

@@ -8,7 +8,9 @@ const Toast = () => {
     return createPortal(
         <Fragment>
             {toasts.map((toast) => (
-                <div className={`notification is-${toast.type}`}>
+                <div
+                    className={`notification is-full-width is-${toast.type}`}
+                    key={toast.id}>
                     <button
                         className="delete"
                         onClick={() => deleteToast(toast.id)}></button>
@@ -21,3 +23,4 @@ const Toast = () => {
 };
 
 export default Toast;
+export { Toast };

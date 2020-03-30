@@ -1,3 +1,5 @@
+@import '../../node_modules/bulma/bulma.sass';
+@import '../../node_modules/bulma-helpers/bulma-helpers.sass';
 @import './variable.scss';
 
 body {
@@ -18,5 +20,9 @@ body {
         margin: auto;
         border: 1px solid $grey-darker;
         min-height: 100vh;
+    }
+
+    .is-full-width {
+        max-width: 480px !important;
     }
 }

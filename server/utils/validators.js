@@ -24,7 +24,10 @@ export function validatorForCreateGoal(goalObj, user) {
             .default(false)
             .optional(),
         user: Joi.string().required(),
-        color: Joi.string().optional()
+        color: Joi.string().optional(),
+        saved: Joi.number()
+            .optional()
+            .default(0)
     });
     const validated = schema.validate({ ...goalObj, user });
     return validated;

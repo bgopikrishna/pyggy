@@ -11,7 +11,9 @@ const Input = ({
     hideLabel = false,
     helpText,
     error,
-    required = false
+    required = false,
+    min,
+    max
 }) => {
     let inputType = type;
     let inputIcon = icon;
@@ -45,6 +47,8 @@ const Input = ({
                     value={value}
                     onChange={onChange}
                     required={required}
+                    min={min}
+                    max={max}
                 />
                 {inputIcon && (
                     <span className="icon is-small is-left">

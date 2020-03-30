@@ -8,9 +8,9 @@
     "license": "MIT",
     "private": false,
     "scripts": {
-        "server": "nodemon --exec babel-node server/server.js",
-        "client": "yarn start --cwd client",
-        "start": "concurrently \"yarn start --cwd client\" \"yarn server\"",
+        "server": "nodemon --watch server --exec babel-node server/server.js",
+        "client": "yarn  --cwd client start",
+        "start": "concurrently \"yarn  --cwd client start\" \"yarn server\"",
         "build:client": "yarn build --prefix client",
         "build:server": "babel server -d dist",
         "start:prod": "export NODE_ENV=production && node  dist/server.js",
@@ -57,5 +57,10 @@
     },
     "engines": {
         "node": "12.x"
+    },
+    "nodemonConfig": {
+        "ignore": [
+            "client/*"
+        ]
     }
 }

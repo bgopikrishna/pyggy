@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { createContext, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useReducer } from 'react';
 import { useContext } from 'react';
@@ -27,11 +27,26 @@ const reducer = (state, action) => {
 const ToastProvider = (props) => {
     const [toasts, dispatch] = useReducer(reducer, []);
 
-    const addToast = (message, type) =>
-        dispatch({ type: ADD_TOAST, payload: { id: uuid(), message, type } });
+    let timer;
+
+    const addToast = ({ message, type }) => {
+        const id = uuid();
+        dispatch({ type: ADD_TOAST, payload: { id, message, type } });
+
+        timer = setTimeout(
+            () => dispatch({ type: REMOVE_TOAST, payload: { id } }),
+            2000
+        );
+    };
 
     const deleteToast = (id) =>
         dispatch({ type: REMOVE_TOAST, payload: { id } });
+
+    useEffect(() => {
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [timer]);
 
     return (
         <ToastContext.Provider

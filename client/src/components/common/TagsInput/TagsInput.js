@@ -1,11 +1,20 @@
 import React from 'react';
 import useTags, { TAG_ADD, TAG_REMOVE } from '../../../hooks/useTags';
 
-const TagsInput = ({ tags = [], onChange, placeholder, label = 'tags' }) => {
+const TagsInput = ({
+    tags = [],
+    onChange,
+    placeholder,
+    label = 'tags',
+    onFocus,
+    onBlur
+}) => {
     const [state, dispatch] = useTags(tags);
 
     const addTag = (e) => {
         console.log('event', e.key, e.target.value);
+
+        e.stopPropagation();
 
         if (e.key === 'Enter' && e.target.value !== '') {
             dispatch({
@@ -48,6 +57,8 @@ const TagsInput = ({ tags = [], onChange, placeholder, label = 'tags' }) => {
                 label={label}
                 placeholder={placeholder}
                 onKeyUp={addTag}
+                onFocus={onFocus}
+                onBlur={onBlur}
             />
         </div>
     );

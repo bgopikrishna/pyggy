@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Input from '../input/Input';
 import useSetState from '../../../hooks/useSetState';
@@ -12,7 +12,8 @@ const defaultState = {
     description: '',
     labels: [],
     favourite: false,
-    color: 'Teal'
+    color: 'Teal',
+    saved: 0
 };
 
 const CreateGoalForm = ({
@@ -22,6 +23,7 @@ const CreateGoalForm = ({
     mode = 'create'
 }) => {
     const [goalObj, setState] = useSetState(goal);
+    const [labelsElemFocus, setLabelsElemFocus] = useState(false);
 
     const handleChange = (e) => {
         setState({ [e.target.name]: e.target.value });
@@ -38,27 +40,42 @@ const CreateGoalForm = ({
     const handleOnSubmit = (e) => {
         e.preventDefault();
 
-        if (e.code !== 'Enter') {
+        if (!labelsElemFocus) {
             handleSubmit(goalObj);
         }
     };
 
-    const { name, target, description, labels, favourite, color } = goalObj;
+    const handleLabelsFocus = (e) => {
+        if (e.type === 'focus') {
+            setLabelsElemFocus(true);
+        }
+        if (e.type === 'blur') {
+            setLabelsElemFocus(false);
+        }
+    };
+
+    const {
+        name,
+        target,
+        description,
+        labels,
+        favourite,
+        color,
+        saved
+    } = goalObj;
     return (
-        <div className="create_goal has-padding-10">
-            <div className="creat_goal_header is-flex justify-center">
-                <span
-                    className="material-icons has-margin-right-auto"
-                    onClick={handleBack}>
+        <div className="create_goal">
+            <div className="creat_goal_header is-flex justify-between has-padding-10 has-background-white position-fixed top-0 is-full-width has-text-primary box">
+                <span className="material-icons" onClick={handleBack}>
                     arrow_back_ios
                 </span>{' '}
-                <h3 className="has-margin-right-auto title is-5">
-                    Create a Goal
+                <h3 className="has-margin-auto has-text-primary title is-5">
+                    Goal Details
                 </h3>
             </div>
 
             <form
-                className="create_goal__form has-padding-15 has-margin-top-15"
+                className="create_goal__form has-padding-15 has-margin-top-50"
                 onSubmit={handleOnSubmit}>
                 <div className="box">
                     <Input
@@ -76,7 +93,20 @@ const CreateGoalForm = ({
                         label="target"
                         placeholder="Need to save"
                         required={true}
+                        min={0}
                     />
+                    {mode !== 'create' && (
+                        <Input
+                            value={saved}
+                            onChange={handleChange}
+                            type="number"
+                            label="saved"
+                            placeholder="Need to save"
+                            required={true}
+                            max={target}
+                            min={0}
+                        />
+                    )}
                     <Input
                         value={description}
                         onChange={handleChange}
@@ -85,7 +115,7 @@ const CreateGoalForm = ({
                         placeholder="Description"
                     />
 
-                    {/* <div className="field">
+                    <div className="field">
                         <label
                             htmlFor="labels"
                             className="label is-capitalized">
@@ -95,8 +125,11 @@ const CreateGoalForm = ({
                             tags={labels}
                             onChange={handleLabels}
                             label="labels"
-                            placeholder="Labels"></TagsInput>
-                    </div> */}
+                            placeholder="Labels"
+                            onFocus={handleLabelsFocus}
+                            onBlur={handleLabelsFocus}
+                        />
+                    </div>
 
                     <div className="field has-margin-top-25">
                         <label
@@ -138,13 +171,18 @@ const CreateGoalForm = ({
                 </div>
 
                 <div className="box is-paddingless">
-                    <button
-                        onClick={handleOnSubmit}
-                        className={`button is-primary is-full-width ${
-                            isLoading ? 'is-loading' : ''
-                        }`}>
-                        {mode === 'create' ? 'Create Goal' : 'Update Goal'}
-                    </button>
+                    {isLoading && (
+                        <button
+                            type="submit"
+                            className="button is-primary is-full-width is-loading"></button>
+                    )}
+                    {!isLoading && (
+                        <button
+                            type="submit"
+                            className="button is-primary is-full-width">
+                            {mode === 'create' ? 'Create Goal' : 'Update Goal'}
+                        </button>
+                    )}
                 </div>
             </form>
         </div>
