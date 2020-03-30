@@ -14,7 +14,7 @@
         "build:client": "yarn build --prefix client",
         "build:server": "babel server -d dist",
         "start:prod": "export NODE_ENV=production && YARN_PRODUCTION=true nodemon  dist/server.js",
-        "heroku-postbuild": "YARN_PRODUCTION=false yarn install --cwd client && yarn --cwd client build && YARN_PRODUCTION=true yarn build:server"
+        "heroku-postbuild": "YARN_PRODUCTION=false yarn install --cwd client && yarn --cwd client build  &&      YARN_PRODUCTION=false yarn install && yarn build:server"
     },
     "dependencies": {
         "@hapi/joi": "^17.1.0",
