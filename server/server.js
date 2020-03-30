@@ -1,13 +1,12 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 import startMongoose from './utils/mongoose';
 import goalRouter from './routes/goals/goal.route';
 import authRouter from './routes/authentication/auth.route';
 import auth from './middlewares/auth.middleware';
 import userRouter from './routes/user/user.route';
-
-const path = require('path');
 
 dotenv.config();
 
@@ -15,20 +14,28 @@ const app = express();
 
 app.use(cors());
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
 
 startMongoose();
 
+console.log('Environment', process.env.NODE_ENV === 'production');
+
 app.get('/api', (req, res) => {
     res.send('Welcome to Pyggy');
 });
 
-console.log('Environment', process.env.NODE_ENV);
-
 app.use('/api/auth', authRouter);
 app.use('/api/goals', auth, goalRouter);
 app.use('/api/user', auth, userRouter);
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build/'));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
 
 app.listen(5000, () => console.log('Example app listening on port 5000!'));

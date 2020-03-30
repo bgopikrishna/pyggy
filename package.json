@@ -8,13 +8,13 @@
     "license": "MIT",
     "private": false,
     "scripts": {
-        "server": "nodemon --exec babel-node server.js",
-        "client": "npm start --prefix client",
-        "start": "concurrently \"npm start --prefix client\" \"npm run server\"",
-        "build:client": "npm run build --prefix client",
-        "build:server": "babel lib -d dist",
-        "start:prod": "npm install && nodemon --exec babel-node server.js",
-        "heroku-postbuild": "npm i"
+        "server": "nodemon --exec babel-node server/server.js",
+        "client": "yarn start --cwd client",
+        "start": "concurrently \"yarn start --cwd client\" \"yarn server\"",
+        "build:client": "yarn build --prefix client",
+        "build:server": "babel server -d dist",
+        "start:prod": "export NODE_ENV=production && YARN_PRODUCTION=true nodemon  dist/server.js",
+        "heroku-postbuild": "YARN_PRODUCTION=false yarn install --cwd client && yarn --cwd client build && YARN_PRODUCTION=true yarn build:server"
     },
     "dependencies": {
         "@hapi/joi": "^17.1.0",
@@ -29,6 +29,7 @@
         "mongoose": "^5.8.11"
     },
     "devDependencies": {
+        "@babel/cli": "^7.8.4",
         "@babel/core": "^7.8.4",
         "@babel/node": "^7.8.4",
         "@babel/preset-env": "^7.8.4",
