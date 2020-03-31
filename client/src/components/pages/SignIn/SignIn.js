@@ -57,11 +57,13 @@ const SignIn = () => {
                     <p className="has-text-danger">Invalid email or password</p>
                 )}
 
-                {/* <p className="has-margin-30 is-size-6 has-text-grey-darker">or</p>
+                <p className="has-margin-30 is-size-6 has-text-grey-darker">
+                    or
+                </p>
 
                 <Link to="/signup" className="button is-link">
                     Create an account
-                </Link> */}
+                </Link>
             </form>
         </div>
     );

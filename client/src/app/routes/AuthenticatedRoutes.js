@@ -34,7 +34,7 @@ const AuthenticatedRoutes = () => {
                     <Route path="/create">
                         <CreateGoal></CreateGoal>
                     </Route>
-                    <Route path="/update/:id">
+                    <Route path="/edit/:id">
                         <UpdateGoal></UpdateGoal>
                     </Route>
                 </Switch>

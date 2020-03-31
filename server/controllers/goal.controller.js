@@ -9,7 +9,7 @@ export const getAllGoals = async (req, res) => {
     const { id: userId } = req.user;
 
     try {
-        const userGoals = await Goal.find({ user: userId });
+        const userGoals = await Goal.find({ user: userId }).sort({});
         res.send({ goals: userGoals });
     } catch (error) {
         res.status(500).send(error);

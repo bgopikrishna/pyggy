@@ -41,6 +41,10 @@ const goalSchema = new Schema({
     color: {
         type: String,
         default: 'Black'
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now()
     }
 });
 

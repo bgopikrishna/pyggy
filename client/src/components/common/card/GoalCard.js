@@ -1,22 +1,42 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Dropdown from '../Dropdown/Dropdown';
+import './GoalCard.scss';
 
 const GoalCard = ({ goal }) => {
-    const { name, saved, target } = goal;
+    const { name, saved, target, color } = goal;
 
     return (
-        <div className="card has-margin-10">
+        <div className="goal_card card has-margin-10">
             <header className="card-header">
                 <p className="card-header-title">{name}</p>
-                <a
-                    href="#"
-                    className="card-header-icon"
-                    aria-label="more options">
-                    <span className="icon">
-                        <span className="material-icons">expand_more</span>{' '}
-                    </span>
-                </a>
+                <Dropdown>
+                    <Link
+                        to={`/edit/${goal._id}`}
+                        className="dropdown-item is-flex align-items-center">
+                        <span className="material-icons icon is-small has-margin-right-15 mdi mdi-dark">
+                            edit
+                        </span>
+                        <span className="is-size-6">Edit</span>
+                    </Link>
+                    <a
+                        role="button"
+                        className="dropdown-item is-flex align-items-center">
+                        <span className="material-icons icon is-small has-margin-right-15 mdi mdi-dark">
+                            archive
+                        </span>
+                        <span className="is-size-6">Archive</span>
+                    </a>
+                    <a
+                        role="button"
+                        className="dropdown-item is-flex has-text-danger align-items-center">
+                        <span className="material-icons icon is-small has-margin-right-15 mdi mdi-dark">
+                            delete
+                        </span>
+                        <span className="is-size-6">Delete</span>
+                    </a>
+                </Dropdown>
             </header>
             <div className="card-content">
                 <div className="content">
@@ -25,13 +45,15 @@ const GoalCard = ({ goal }) => {
                 </div>
             </div>
             <footer className="card-footer">
-                <Link to={`/update/${goal._id}`} className="card-footer-item">
-                    Update
-                </Link>
-                <a href="#" className="card-footer-item">
-                    Edit
-                </a>
+                <a className="card-footer-item">Update Progress</a>
             </footer>
+
+            <progress
+                class={`progress is-small is-radiusless is-${color}`}
+                value={saved}
+                max={target}>
+                {saved}
+            </progress>
         </div>
     );
 };
