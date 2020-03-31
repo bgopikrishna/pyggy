@@ -8,8 +8,8 @@ const GoalCard = ({ goal }) => {
     const { name, saved, target, color } = goal;
 
     return (
-        <div className="goal_card card has-margin-10">
-            <header className="card-header">
+        <div className="goal_card card has-margin-10 has-background-white">
+            <header className="card-header is-shadowless">
                 <p className="card-header-title">{name}</p>
                 <Dropdown>
                     <Link
@@ -38,22 +38,28 @@ const GoalCard = ({ goal }) => {
                     </a>
                 </Dropdown>
             </header>
-            <div className="card-content">
-                <div className="content">
-                    <p>Saved: {saved}</p>
-                    <p>Target: {target}</p>
-                </div>
+
+            {saved && (
+                <progress
+                    className={`progress is-small is-radiusless is-${color} is-marginless`}
+                    value={saved}
+                    max={target}>
+                    {saved}
+                </progress>
+            )}
+
+            <div className="card-content is-flex justify-space-around has-padding-top-5 has-padding-bottom-5">
+                <p>Saved: ${saved}</p>
+                <p className="content">
+                    Progress:{' '}
+                    {Math.round((parseFloat(saved) / parseFloat(target)) * 100)}
+                    %
+                </p>
             </div>
+
             <footer className="card-footer">
                 <a className="card-footer-item">Update Progress</a>
             </footer>
-
-            <progress
-                class={`progress is-small is-radiusless is-${color}`}
-                value={saved}
-                max={target}>
-                {saved}
-            </progress>
         </div>
     );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Input from '../../common/input/Input';
 import useAuth from '../../../hooks/useAuth';
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
     const [name, setName] = useState('');
@@ -9,16 +10,24 @@ const SignUp = () => {
     const { signup } = useAuth();
 
     const [loader, setLoader] = useState(false);
+    const [error, setError] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoader(() => true);
-        signup({ name, email, password });
+        signup({ name, email, password })
+            .then(() => setLoader(() => false))
+            .catch((err) => {
+                setLoader(false);
+                setError(true);
+            });
     };
 
     return (
         <div className="auth-form">
-            <form className="has-padding-50 flex-column has-margin-top-50" onSubmit={handleSubmit}>
+            <form
+                className="has-padding-50 flex-column has-margin-top-50"
+                onSubmit={handleSubmit}>
                 <h3 className="title is-3 has-text-centered">Sign Up</h3>
                 <Input
                     value={name}
@@ -27,7 +36,9 @@ const SignUp = () => {
                     label="Name"
                     helpText="Please enter name"
                     placeholder="Enter your name"
-                    icon="email"></Input>
+                    icon="face"
+                    required={true}
+                />
 
                 <Input
                     value={email}
@@ -36,7 +47,9 @@ const SignUp = () => {
                     label="Email"
                     helpText="Please enter correct email"
                     placeholder="Enter your email"
-                    icon="email"></Input>
+                    icon="email"
+                    required={true}
+                />
                 <Input
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -44,9 +57,28 @@ const SignUp = () => {
                     placeholder="Enter passsword"
                     helpText="Invalid password"
                     icon="lock"
-                    label="Password"></Input>
+                    label="Password"
+                    required={true}
+                />
 
-                <button className={`button is-primary has-margin-top-20 ${loader ? 'is-loading' : ''}`}>Sign Up</button>
+                <button
+                    className={`button is-primary has-margin-top-20 ${
+                        loader ? 'is-loading' : ''
+                    }`}>
+                    Sign Up
+                </button>
+
+                {error && (
+                    <p className="has-text-danger">
+                        Something went wrong, try refreshing the page
+                    </p>
+                )}
+
+                <Link
+                    to="/signin"
+                    className="has-margin-25 has-text-centered is-capitalized">
+                    Already have an account? Sign In
+                </Link>
             </form>
         </div>
     );

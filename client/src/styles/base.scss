@@ -13,6 +13,10 @@ body {
     z-index: 5;
 }
 
+* [role='button'] {
+    cursor: pointer;
+}
+
 @media (min-width: 900px) {
     #root {
         max-width: 480px;

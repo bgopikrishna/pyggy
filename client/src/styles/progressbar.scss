@@ -14,7 +14,7 @@
     width: 100%;
 
     &::-webkit-progress-bar {
-        background-color: $progress-bar-background-color;
+        background-color: white;
     }
 
     &::-webkit-progress-value {
@@ -33,6 +33,9 @@
     // Colors
     @each $name in $goal-colors {
         &.is-#{$name} {
+            &::-webkit-progress-bar {
+                background-color: white;
+            }
             &::-webkit-progress-value {
                 background-color: var(--#{$name}, $primary);
             }

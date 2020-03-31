@@ -36,7 +36,8 @@ const SignIn = () => {
                     label="Email"
                     helpText="Please enter correct email"
                     placeholder="Enter your email"
-                    icon="email"></Input>
+                    icon="email"
+                />
                 <Input
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -44,7 +45,8 @@ const SignIn = () => {
                     placeholder="Enter passsword"
                     helpText="Invalid password"
                     icon="lock"
-                    label="Password"></Input>
+                    label="Password"
+                />
 
                 <button
                     className={`button is-primary has-margin-top-20 ${
@@ -57,12 +59,10 @@ const SignIn = () => {
                     <p className="has-text-danger">Invalid email or password</p>
                 )}
 
-                <p className="has-margin-30 is-size-6 has-text-grey-darker">
-                    or
-                </p>
-
-                <Link to="/signup" className="button is-link">
-                    Create an account
+                <Link
+                    to="/signup"
+                    className="has-margin-25 has-text-centered is-capitalized">
+                    don't have an account? Sign Up
                 </Link>
             </form>
         </div>
