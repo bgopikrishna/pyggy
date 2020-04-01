@@ -10,11 +10,11 @@
     "scripts": {
         "server": "nodemon --watch server --exec babel-node server/server.js",
         "client": "yarn  --cwd client start",
-        "start": "concurrently \"yarn  --cwd client start\" \"yarn server\"",
+        "start:dev": "concurrently \"yarn  --cwd client start\" \"yarn server\"",
         "build:client": "yarn build --prefix client",
         "build:server": "babel server -d dist",
         "start:prod": "export NODE_ENV=production && node  dist/server.js",
-        "heroku-postbuild": "YARN_PRODUCTION=false yarn install --cwd client && yarn --cwd client build  &&      YARN_PRODUCTION=false yarn install && yarn build:server"
+        "heroku-postbuild": "yarn build:server"
     },
     "dependencies": {
         "@hapi/joi": "^17.1.0",
