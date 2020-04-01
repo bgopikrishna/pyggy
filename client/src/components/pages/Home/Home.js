@@ -8,15 +8,12 @@ const Home = () => {
 
     return (
         <section className="home">
+            <header>
+                <h2 className="title">Active Goals</h2>
+            </header>
             {goals.map((goal) => (
                 <GoalCard key={goal._id} goal={goal}></GoalCard>
             ))}
-
-            <Modal open={true}>
-                <div className="modal-content is-active">
-                    Any other Bulma elements you want
-                </div>
-            </Modal>
         </section>
     );
 };

@@ -65,7 +65,7 @@ const CreateGoalForm = ({
     } = goalObj;
     return (
         <div className="create_goal">
-            <div className="creat_goal_header is-flex justify-between has-padding-10 has-background-white position-fixed top-0 is-full-width has-text-primary box">
+            <div className="creat_goal_header is-flex justify-between has-padding-10 has-background-white position-fixed top-0 is-full-width has-text-primary">
                 <span
                     className="material-icons"
                     role="button"
@@ -80,7 +80,7 @@ const CreateGoalForm = ({
             <form
                 className="create_goal__form has-padding-15 has-margin-top-50"
                 onSubmit={handleOnSubmit}>
-                <div className="box">
+                <div className="">
                     <Input
                         value={name}
                         onChange={handleChange}
@@ -168,21 +168,21 @@ const CreateGoalForm = ({
                                 value={favourite}
                                 id="favourite"
                             />
-                            &nbsp; Favourite
+                            &nbsp;As Favourite (optional)
                         </label>
                     </div>
                 </div>
 
-                <div className="box is-paddingless">
+                <div className="has-margin-top-25">
                     {isLoading && (
                         <button
                             type="submit"
-                            className="button is-primary is-full-width is-loading"></button>
+                            className="button is-primary is-full-width is-loading box"></button>
                     )}
                     {!isLoading && (
                         <button
                             type="submit"
-                            className="button is-primary is-full-width">
+                            className="button is-primary is-full-width box">
                             {mode === 'create' ? 'Create Goal' : 'Update Goal'}
                         </button>
                     )}

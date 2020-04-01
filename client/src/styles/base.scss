@@ -23,6 +23,18 @@ button.dropdown-item {
     border: none;
 }
 
+button.card-footer-item {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+
+    &:hover,
+    &:focus {
+        background: $white-bis;
+    }
+}
+
 @media (min-width: 900px) {
     #root {
         max-width: 480px;
