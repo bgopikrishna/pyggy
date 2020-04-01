@@ -1,6 +1,12 @@
 import axios from 'axios';
 import { getToken } from './auth-helpers';
-import { API_BASE_URL } from '../constants';
+import { PROD_API_BASE_URL, DEV_API_BASE_URL } from '../constants';
+
+let API_BASE_URL = DEV_API_BASE_URL;
+
+if (process.env.NODE_ENV === 'production') {
+    API_BASE_URL = PROD_API_BASE_URL;
+}
 
 async function getData(endpoint, config = {}) {
     const API_URL = API_BASE_URL + endpoint;
