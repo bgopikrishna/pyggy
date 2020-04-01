@@ -40,7 +40,7 @@ const Dropdown = ({
                     aria-controls={`dropdown-menu ${label}`}>
                     {label && <span>{value ? value : label}</span>}
                     <span className="icon is-small">
-                        <span className="material-icons">expand_more</span>
+                        <span className="material-icons">more_vert</span>
                     </span>
                 </button>
             </div>

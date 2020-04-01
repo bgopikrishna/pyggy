@@ -1,44 +1,53 @@
 import axios from 'axios';
 import { getToken } from './auth-helpers';
+import { API_BASE_URL } from '../constants';
 
-const getData = async (url, config = {}) => {
-    return axios.get(url, {
+async function getData(endpoint, config = {}) {
+    const API_URL = API_BASE_URL + endpoint;
+
+    return axios.get(API_URL, {
         ...config,
         headers: { 'x-authtoken': getToken() }
     });
-};
+}
 
-const postData = async (url, data, config = {}, authorized = true) => {
+async function postData(endpoint, data, config = {}, authorized = true) {
+    const API_URL = API_BASE_URL + endpoint;
+
     if (authorized) {
-        return axios.post(url, data, {
+        return axios.post(API_URL, data, {
             ...config,
             headers: { 'x-authtoken': getToken() }
         });
     }
 
-    return axios.post(url, data, config);
-};
+    return axios.post(endpoint, data, config);
+}
 
-const putData = async (url, data = {}, config = {}, authorized = true) => {
+async function putData(endpoint, data = {}, config = {}, authorized = true) {
+    const API_URL = API_BASE_URL + endpoint;
+
     if (authorized) {
-        return axios.put(url, data, {
+        return axios.put(API_URL, data, {
             ...config,
             headers: { 'x-authtoken': getToken() }
         });
     }
 
-    return axios.put(url, data, config);
-};
+    return axios.put(endpoint, data, config);
+}
 
-const deleteData = async (url, data = {}, config = {}, authorized = true) => {
+async function deleteData(endpoint, data = {}, config = {}, authorized = true) {
+    const API_URL = API_BASE_URL + endpoint;
+
     if (authorized) {
-        return axios.delete(url, data, {
+        return axios.delete(API_URL, data, {
             ...config,
             headers: { 'x-authtoken': getToken() }
         });
     }
 
-    return axios.delete(url, data, config);
-};
+    return axios.delete(endpoint, data, config);
+}
 
 export { getData, postData, putData, deleteData };

@@ -26,3 +26,13 @@ export const GOAL_COLORS = [
     'Grey',
     'Taupe'
 ];
+
+let API_BASE_URL;
+
+if (process.env.NODE_ENV === 'production') {
+    API_BASE_URL = 'https://pygyy.herokuapp.com';
+} else {
+    API_BASE_URL = '';
+}
+
+export { API_BASE_URL };
