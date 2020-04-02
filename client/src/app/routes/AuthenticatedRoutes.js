@@ -1,13 +1,12 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import SignIn from '../../components/pages/SignIn/SignIn';
-import SignUp from '../../components/pages/SignUp/SignUp';
 import Home from '../../components/pages/Home/Home';
 import Layout from '../../components/layout/Layout';
 import GoalsProvider from '../../context/GoalsContext';
 import Account from '../../components/pages/Account/Account';
 import CreateGoal from '../../components/pages/CreateGoal/CreateGoal';
 import UpdateGoal from '../../components/pages/UpdateGoal/UpdateGoal';
+import List from '../../components/pages/List/List';
 
 const AuthenticatedRoutes = () => {
     return (
@@ -26,6 +25,9 @@ const AuthenticatedRoutes = () => {
 
                     <Route path="/home">
                         <Home></Home>
+                    </Route>
+                    <Route path="/list">
+                        <List></List>
                     </Route>
                     <Route path="/account">
                         <Account></Account>

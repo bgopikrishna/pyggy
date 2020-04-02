@@ -1,4 +1,8 @@
 .modal {
+    &-background {
+        animation: fadeIn 0.3s ease-in;
+    }
+
     z-index: 9;
     &-content {
         position: fixed !important;
@@ -25,5 +29,13 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }

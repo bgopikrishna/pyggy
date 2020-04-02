@@ -5,6 +5,7 @@ import useSetState from '../../../hooks/useSetState';
 import TagsInput from '../TagsInput/TagsInput';
 import { GOAL_COLORS } from '../../../constants';
 import './CreateGoalForm.scss';
+import Button from '../Button/Button';
 
 const defaultState = {
     name: '',
@@ -174,18 +175,12 @@ const CreateGoalForm = ({
                 </div>
 
                 <div className="has-margin-top-25">
-                    {isLoading && (
-                        <button
-                            type="submit"
-                            className="button is-primary is-full-width is-loading box"></button>
-                    )}
-                    {!isLoading && (
-                        <button
-                            type="submit"
-                            className="button is-primary is-full-width box">
-                            {mode === 'create' ? 'Create Goal' : 'Update Goal'}
-                        </button>
-                    )}
+                    <Button
+                        loading={isLoading}
+                        type="submit"
+                        className="button is-primary is-full-width box">
+                        {mode === 'create' ? 'Create Goal' : 'Update Goal'}
+                    </Button>
                 </div>
             </form>
         </div>

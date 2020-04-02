@@ -12,6 +12,7 @@ router
     .get('/', getAllGoals)
     .post('/', createAGoal)
     .put('/:goalId', updateAGoal)
+    .put('/progress/:id', () => {})
     .delete('/:goalId', deleteAGoal);
 
 export default router;

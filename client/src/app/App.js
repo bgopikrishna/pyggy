@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import { ToastProvider, Toast } from '../components/common/Toast';
+import DesktopVersion from './DesktopVersion';
 
 const UnAuthenticatedRoutes = React.lazy(() =>
     import('./routes/UnAuthenticatedRoutes')
@@ -21,7 +22,7 @@ function App() {
                 </React.Suspense>
             </Router>
 
-            <Toast />
+            <DesktopVersion></DesktopVersion>
         </ToastProvider>
     );
 }

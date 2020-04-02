@@ -35,7 +35,7 @@ const goalSchema = new Schema({
     completed: {
         type: Boolean,
         default: function() {
-            return this.saved === this.target;
+            return Math.round(this.saved) === Math.round(this.target);
         }
     },
     color: {

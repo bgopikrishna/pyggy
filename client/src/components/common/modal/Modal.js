@@ -15,7 +15,9 @@ const Modal = ({ children, open, closeModal, position = 'bottom' }) => {
         ? createPortal(
               <div className="modal is-active">
                   <div className="modal-background"></div>
-                  <div className={`modal-content ${position}`} ref={ref}>
+                  <div
+                      className={`modal-content is-full-width ${position}`}
+                      ref={ref}>
                       {children}
                   </div>
                   <button

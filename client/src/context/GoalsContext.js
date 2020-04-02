@@ -71,7 +71,7 @@ const GoalsProvider = (props) => {
 
     return (
         <GoalsContext.Provider
-            value={{ goals, createAGoal, getAllGoals,updateAGoal }}
+            value={{ goals, createAGoal, getAllGoals, updateAGoal }}
             {...props}
         />
     );
