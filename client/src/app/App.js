@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import { ToastProvider, Toast } from '../components/common/Toast';
 import DesktopVersion from './DesktopVersion';
+import FullScreenLoader from '../components/common/FullScreenLoader/FullScreenLoader';
 
 const UnAuthenticatedRoutes = React.lazy(() =>
     import('./routes/UnAuthenticatedRoutes')
@@ -17,7 +18,7 @@ function App() {
     return (
         <ToastProvider>
             <Router>
-                <React.Suspense fallback={<p>Loading</p>}>
+                <React.Suspense fallback={FullScreenLoader}>
                     {user ? <AuthenticatedRoutes /> : <UnAuthenticatedRoutes />}
                 </React.Suspense>
             </Router>
