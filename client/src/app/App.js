@@ -18,7 +18,7 @@ function App() {
     return (
         <ToastProvider>
             <Router>
-                <React.Suspense fallback={FullScreenLoader}>
+                <React.Suspense fallback={<FullScreenLoader />}>
                     {user ? <AuthenticatedRoutes /> : <UnAuthenticatedRoutes />}
                 </React.Suspense>
             </Router>
