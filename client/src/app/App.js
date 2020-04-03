@@ -22,7 +22,7 @@ function App() {
                 </React.Suspense>
             </Router>
 
-            <DesktopVersion></DesktopVersion>
+            <Toast />
         </ToastProvider>
     );
 }

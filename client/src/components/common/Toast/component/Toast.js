@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { createPortal } from 'react-dom';
 import { useToast } from '../Context/ToastContext';
+import './Toast.scss';
 
 const Toast = () => {
     const { toasts, deleteToast } = useToast();

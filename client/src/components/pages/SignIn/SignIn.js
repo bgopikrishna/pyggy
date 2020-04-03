@@ -23,7 +23,7 @@ const SignIn = () => {
     };
 
     return (
-        <div className="auth-form ">
+        <div className="auth-form is-flex justify-content-center align-items-center">
             <form
                 className="has-padding-50 flex-column has-margin-top-50"
                 onSubmit={handleSubmit}>

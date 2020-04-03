@@ -2,14 +2,52 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Dropdown from '../Dropdown/Dropdown';
 import { useGoals } from '../../../context/GoalsContext';
+import { useToast } from '../Toast';
 
-export const GoalCardHeader = ({ goal, handleDelete, showMenu }) => {
+export const GoalCardHeader = ({ goal, showMenu }) => {
+    const { addToast } = useToast();
+
     const { name, archived } = goal;
 
-    const { updateAGoal } = useGoals();
+    const { updateAGoal, deleteAGoal } = useGoals();
 
     const handleArchive = () => {
-        updateAGoal([{ ...goal, archived: !archived }]);
+        const message = `Are you sure you want to ${
+            archived ? 'restore' : 'archive'
+        } this?`;
+
+        const answer = window.confirm(message);
+
+        if (answer) {
+            updateAGoal([{ ...goal, archived: !archived }]).then(() =>
+                addToast({
+                    message: `Goal ${goal.name} archived`,
+                    type: 'info'
+                })
+            );
+        }
+    };
+
+    const handleDelete = () => {
+        const message = `Are you sure you want to permanently delete this?`;
+
+        const answer = window.confirm(message);
+
+        if (answer) {
+            deleteAGoal([goal])
+                .then(() =>
+                    addToast({
+                        message: `Goal ${goal.name} deleted successfully`,
+                        type: 'info'
+                    })
+                )
+                .catch((err) =>
+                    addToast({
+                        message: 'Error deleting the goal',
+                        type: 'danger'
+                    })
+                );
+        }
     };
 
     return (
@@ -17,19 +55,21 @@ export const GoalCardHeader = ({ goal, handleDelete, showMenu }) => {
             <p className="card-header-title">{name}</p>
             {showMenu && (
                 <Dropdown>
-                    <Link
-                        to={`/edit/${goal._id}`}
-                        className="dropdown-item is-flex align-items-center">
-                        <span className="material-icons icon is-small has-margin-right-15 mdi mdi-dark">
-                            edit
-                        </span>
-                        <span className="is-size-6">Edit</span>
-                    </Link>
+                    {!archived && (
+                        <Link
+                            to={`/edit/${goal._id}`}
+                            className="dropdown-item is-flex align-items-center">
+                            <span className="material-icons icon is-small has-margin-right-15 mdi mdi-dark">
+                                edit
+                            </span>
+                            <span className="is-size-6">Edit</span>
+                        </Link>
+                    )}
                     <button
                         onClick={handleArchive}
                         className="is-white dropdown-item is-flex align-items-center">
                         <span className="material-icons icon is-small has-margin-right-15 mdi mdi-dark">
-                            archive
+                            {!archived ? 'archive' : 'unarchive'}
                         </span>
                         <span className="is-size-6">
                             {!archived ? 'Archive' : 'Restore'}

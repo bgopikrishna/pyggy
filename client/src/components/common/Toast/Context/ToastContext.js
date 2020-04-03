@@ -10,7 +10,7 @@ const ToastContext = createContext();
 
 const reducer = (state, action) => {
     if (action.type === ADD_TOAST) {
-        console.log('tasost', state);
+        console.log('tasost', state, action);
         return [...state, action.payload];
     }
 
@@ -35,7 +35,7 @@ const ToastProvider = (props) => {
 
         timer = setTimeout(
             () => dispatch({ type: REMOVE_TOAST, payload: { id } }),
-            2000
+            3000
         );
     };
 

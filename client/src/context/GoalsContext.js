@@ -6,21 +6,31 @@ import {
     useContext
 } from 'react';
 import React from 'react';
-import { getGoals, doCreateGoal, doUpdateGoal } from '../utils/goal-helpers';
+import {
+    getGoals,
+    doCreateGoal,
+    doUpdateGoal,
+    doDeleteGoal
+} from '../utils/goal-helpers';
 import useThunkReducer from '../hooks/useThunkReducer';
+
+const SET_ALL_GOALS = 'SET_ALL_GOALS';
+const ADD_A_GOAL = 'ADD_A_GOAL';
+const UPDATE_A_GOAL = 'UPDATE_A_GOAL';
+const DELETE_A_GOAL = 'DELETE_A_GOAL';
 
 const GoalsContext = createContext();
 
 const reducer = (state, action) => {
-    if (action.type === 'SET_ALL_GOALS') {
+    if (action.type === SET_ALL_GOALS) {
         return action.payload.goals;
     }
 
-    if (action.type === 'ADD_A_GOAL') {
+    if (action.type === ADD_A_GOAL) {
         return [...state, action.payload.goal];
     }
 
-    if (action.type === 'UPDATE_A_GOAL') {
+    if (action.type === UPDATE_A_GOAL) {
         const updatedGoal = action.payload.goal;
 
         const newGoals = state.map((goal) => {
@@ -33,7 +43,7 @@ const reducer = (state, action) => {
         return newGoals;
     }
 
-    if (action.type === 'DELETE_A_GOAL') {
+    if (action.type === DELETE_A_GOAL) {
         const deletedGoal = action.payload.goal;
 
         const newGoals = state.filter((goal) => deletedGoal._id === goal._id);
@@ -50,28 +60,40 @@ const GoalsProvider = (props) => {
     const getAllGoals = useCallback(
         () =>
             getGoals().then((goals) =>
-                dispatch({ type: 'SET_ALL_GOALS', payload: { goals } })
+                dispatch({ type: SET_ALL_GOALS, payload: { goals } })
             ),
         [dispatch]
     );
 
     const createAGoal = ([goalData]) =>
         doCreateGoal(goalData).then((goal) =>
-            dispatch({ type: 'ADD_A_GOAL', payload: { goal } })
+            dispatch({ type: ADD_A_GOAL, payload: { goal } })
         );
 
     const updateAGoal = ([goalData]) =>
         doUpdateGoal(goalData).then((goal) =>
-            dispatch({ type: 'UPDATE_A_GOAL', payload: { goal } })
+            dispatch({ type: UPDATE_A_GOAL, payload: { goal } })
         );
 
+    const deleteAGoal = ([goalData]) =>
+        doDeleteGoal(goalData).then((goal) =>
+            dispatch({ type: DELETE_A_GOAL, payload: { goal } })
+        );
+
+        
     useEffect(() => {
         getAllGoals();
     }, [getAllGoals]);
 
     return (
         <GoalsContext.Provider
-            value={{ goals, createAGoal, getAllGoals, updateAGoal }}
+            value={{
+                goals,
+                createAGoal,
+                getAllGoals,
+                updateAGoal,
+                deleteAGoal
+            }}
             {...props}
         />
     );

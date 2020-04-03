@@ -6,20 +6,14 @@ import { GoalCardHeader } from './GoalCardHeader';
 import { GoalUpdateModal } from './GoalUpdateModal';
 import { useState } from 'react';
 
-const GoalCard = ({ goal, showAdvancedOptions = true }) => {
+const GoalCard = ({ goal, showMenu }) => {
     const { saved, target, color, archived } = goal;
 
     const [updateDialogVisibility, setUpdateDialogVisibility] = useState(false);
 
-   
-
     return (
-        <div className="goal_card card has-margin-10 has-background-white">
-            <GoalCardHeader
-                goal={goal}
-                handleDelete={() => console.log('Delete')}
-                showMenu={showAdvancedOptions}
-            />
+        <div className="goal_card card has-margin-10 has-background-white is-full-width">
+            <GoalCardHeader goal={goal} showMenu={showMenu} />
             {!archived && (
                 <progress
                     className={`progress is-small is-${color} is-marginless`}
@@ -31,7 +25,7 @@ const GoalCard = ({ goal, showAdvancedOptions = true }) => {
 
             <GoalCardContent goal={goal} />
 
-            {showAdvancedOptions && (
+            {!archived && goal.target > goal.saved && (
                 <footer className="card-footer">
                     <button
                         onClick={() => setUpdateDialogVisibility(true)}

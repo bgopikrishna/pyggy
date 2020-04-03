@@ -4,7 +4,7 @@ import './Navbar.scss';
 
 const Navbar = () => {
     return (
-        <div className="nav-wrapper w-100">
+        <div className="nav-wrapper is-hidden-desktop w-100">
             <ul className="columns is-gapless is-mobile has-background-white-ter">
                 <li className="column">
                     <NavLink

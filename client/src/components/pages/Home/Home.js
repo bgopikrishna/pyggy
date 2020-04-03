@@ -2,6 +2,7 @@ import React from 'react';
 import { useGoals } from '../../../context/GoalsContext';
 import GoalCard from '../../common/card/GoalCard';
 import Modal from '../../common/modal/Modal';
+import GoalsList from '../../common/GoalsList/GoalsList';
 
 const Home = () => {
     const { goals } = useGoals();
@@ -12,14 +13,12 @@ const Home = () => {
 
     return (
         <section className="home">
-            <header>
+            <header className="is-flex justify-center">
                 <h2 className="title is-4 has-text-center has-text-primary">
                     Active Goals
                 </h2>
             </header>
-            {activeGoals.map((goal) => (
-                <GoalCard key={goal._id} goal={goal}></GoalCard>
-            ))}
+            <GoalsList goals={activeGoals} />
         </section>
     );
 };

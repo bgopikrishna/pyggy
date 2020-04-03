@@ -13,13 +13,7 @@ $goal-colors: 'BerryRed', 'Red', 'Orange', 'Yellow', 'OliveGreen', 'LimeGreen',
 }
 
 .create_goal {
-    position: fixed;
-    height: 100vh;
-    width: 100%;
-    background: inherit;
-    z-index: 4;
-    background: $white;
-    overflow: auto;
+    position: relative;
 
     &_color {
         display: inline-block;
@@ -30,10 +24,24 @@ $goal-colors: 'BerryRed', 'Red', 'Orange', 'Yellow', 'OliveGreen', 'LimeGreen',
     }
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 1024px) {
     .create_goal {
-        max-width: 480px;
-        margin: auto;
-        border: 1px solid $grey-darker;
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        background: inherit;
+        z-index: 4;
+        background: $white;
+        overflow: auto;
+
+        &_header {
+            position: fixed;
+            top: 0em;
+            z-index: 5;
+        }
+
+        form {
+            margin-top: 50px;
+        }
     }
 }

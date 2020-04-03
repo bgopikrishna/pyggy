@@ -1,9 +1,15 @@
 import React, { Fragment } from 'react';
 import './Accordion.scss';
+import { useRef } from 'react';
+import useOnClickOutside from '../../../hooks/useOnClickOutside';
 
 const Accordion = ({ children }) => {
+    const ref = useRef(null);
+
+    useOnClickOutside(ref, () => ref && ref.current.removeAttribute('open'));
+
     return (
-        <details>
+        <details ref={ref}>
             <Fragment>{children}</Fragment>
         </details>
     );

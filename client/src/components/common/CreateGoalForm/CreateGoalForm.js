@@ -66,7 +66,7 @@ const CreateGoalForm = ({
     } = goalObj;
     return (
         <div className="create_goal">
-            <div className="creat_goal_header is-flex justify-between has-padding-10 has-background-white position-fixed top-0 is-full-width has-text-primary">
+            <div className="create_goal_header is-flex justify-between has-padding-10 has-background-white top-0 is-full-width has-text-primary">
                 <span
                     className="material-icons"
                     role="button"
@@ -79,7 +79,7 @@ const CreateGoalForm = ({
             </div>
 
             <form
-                className="create_goal__form has-padding-15 has-margin-top-50"
+                className="create_goal__form has-padding-15"
                 onSubmit={handleOnSubmit}>
                 <div className="">
                     <Input

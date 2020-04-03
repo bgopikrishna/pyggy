@@ -14,9 +14,9 @@ const CreateGoal = () => {
     const redirectToHome = () => {
         addToast({ message: 'Goal created', type: 'success' });
 
-        // timer = setTimeout(() => {
-        //     history.push('/');
-        // }, 3000);
+        timer = setTimeout(() => {
+            history.push('/');
+        }, 3000);
     };
 
     const handleError = () => {

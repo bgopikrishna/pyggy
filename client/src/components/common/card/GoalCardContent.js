@@ -26,8 +26,8 @@ export const GoalCardContent = ({ goal }) => {
                 <AccordionContent>
                     <div className="card-content-expand">
                         <p>Target: ${target}</p>
-                        <p>{description}</p>
-                        <div className="tags">
+                        <p className="has-margin-top-10">{description}</p>
+                        <div className="tags has-margin-top-10">
                             {labels.map((label) => (
                                 <span key={label} className="tag">
                                     {label}

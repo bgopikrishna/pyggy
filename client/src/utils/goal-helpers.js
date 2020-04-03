@@ -9,7 +9,15 @@ const doCreateGoal = (goal) => {
 };
 
 const doUpdateGoal = (goal) => {
-    return apiHelper.putData(`/api/goals/${goal._id}`, goal).then((res) => res.data.goal)
-}
+    return apiHelper
+        .putData(`/api/goals/${goal._id}`, goal)
+        .then((res) => res.data.goal);
+};
 
-export { getGoals, doCreateGoal, doUpdateGoal };
+const doDeleteGoal = (goal) => {
+    return apiHelper
+        .deleteData(`/api/goals/${goal._id}`)
+        .then((res) => res.data.goal);
+};
+
+export { getGoals, doCreateGoal, doUpdateGoal, doDeleteGoal };

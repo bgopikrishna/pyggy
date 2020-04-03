@@ -3,6 +3,7 @@ import { useGoals } from '../../../context/GoalsContext';
 import GoalCard from '../../common/card/GoalCard';
 import Tabs from '../../common/Tabs/Tabs';
 import { useState } from 'react';
+import GoalsList from '../../common/GoalsList/GoalsList';
 
 const TABS = [
     {
@@ -48,23 +49,13 @@ const List = () => {
                 items={TABS}
                 changeTab={handleTabs}
                 activeTabId={activeTab}></Tabs>
-            {activeTab === 1 &&
-                activeGoals.map((goal) => (
-                    <GoalCard key={goal._id} goal={goal}></GoalCard>
-                ))}
+            {activeTab === 1 && <GoalsList goals={activeGoals} />}
 
-            {activeTab === 2 &&
-                completedGoals.map((goal) => (
-                    <GoalCard
-                        key={goal._id}
-                        goal={goal}
-                        showAdvancedOptions={false}></GoalCard>
-                ))}
+            {activeTab === 2 && (
+                <GoalsList goals={completedGoals} showMenu={false} />
+            )}
 
-            {activeTab === 3 &&
-                archivedGoals.map((goal) => (
-                    <GoalCard key={goal._id} goal={goal}></GoalCard>
-                ))}
+            {activeTab === 3 && <GoalsList goals={archivedGoals} />}
         </section>
     );
 };
