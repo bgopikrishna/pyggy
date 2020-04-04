@@ -48,7 +48,7 @@ const handleAuthResponse = (res) => {
 
     const user = res.data;
     storeUserInfo(user);
-    storeAuthKey(res.headers['X-Authtoken'] || res.headers['x-authtoken']);
+    storeAuthKey(res.headers['X-Authtoken']);
 
     return user;
 };

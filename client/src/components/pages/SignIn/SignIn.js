@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Input from '../../common/input/Input';
 import { Link } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
+import { useEffect } from 'react';
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
@@ -21,7 +22,6 @@ const SignIn = () => {
                 setError(true);
             });
     };
-
     return (
         <div className="auth-form is-flex justify-content-center align-items-center">
             <form

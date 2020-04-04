@@ -21,16 +21,14 @@ export const AuthProvider = (props) => {
 
     if (isRejected)
         return (
-            <p>
+            <div className="has-margin-50 has-text-centered is-flex flex-column flex-center">
                 Something went wrong, try refreshing the page{' '}
                 <button
                     className="button"
-                    onClick={() =>
-                        window.localStorage.clear() && window.location.reload()
-                    }>
+                    onClick={() => window.location.reload()}>
                     Reload
                 </button>
-            </p>
+            </div>
         );
 
     return (

@@ -23,7 +23,7 @@ const Home = () => {
 
             <Link
                 to="/create"
-                className="button is-rounded is-primary is-flex align-items-center box position-fixed"
+                className="button is-rounded is-hidden-mobile is-primary is-flex align-items-center box position-fixed"
                 style={{ right: '1.5rem', bottom: '2.5rem' }}>
                 <span className="icon">
                     <span className="material-icons">add</span>{' '}
