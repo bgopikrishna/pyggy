@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
-import path from 'path';
+import helmet from 'helmet';
 import startMongoose from './utils/mongoose';
 import goalRouter from './routes/goals/goal.route';
 import authRouter from './routes/authentication/auth.route';
@@ -11,7 +11,8 @@ import userRouter from './routes/user/user.route';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+
+app.use(helmet());
 
 app.use(cors());
 
@@ -31,4 +32,5 @@ app.use('/api/auth', authRouter);
 app.use('/api/goals', auth, goalRouter);
 app.use('/api/user', auth, userRouter);
 
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));

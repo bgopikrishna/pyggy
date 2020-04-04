@@ -7,6 +7,7 @@ import Account from '../../components/pages/Account/Account';
 import CreateGoal from '../../components/pages/CreateGoal/CreateGoal';
 import UpdateGoal from '../../components/pages/UpdateGoal/UpdateGoal';
 import List from '../../components/pages/List/List';
+import Search from '../../components/pages/Search/Search';
 
 const AuthenticatedRoutes = () => {
     return (
@@ -14,30 +15,39 @@ const AuthenticatedRoutes = () => {
             <Layout>
                 <Switch>
                     <Route path="/" exact>
-                        <Redirect to="/home"></Redirect>
+                        <Redirect to="/home" />
                     </Route>
+
                     <Route path="/signin">
-                        <Redirect to="/home"></Redirect>
+                        <Redirect to="/home" />
                     </Route>
+
                     <Route path="/signup">
-                        <Redirect to="/home"></Redirect>
+                        <Redirect to="/home" />
                     </Route>
 
                     <Route path="/home">
-                        <Home></Home>
+                        <Home />
                     </Route>
+
+                    <Route path="/search">
+                        <Search />
+                    </Route>
+
                     <Route path="/list">
-                        <List></List>
+                        <List />
                     </Route>
+
                     <Route path="/account">
-                        <Account></Account>
+                        <Account />
                     </Route>
 
                     <Route path="/create">
-                        <CreateGoal></CreateGoal>
+                        <CreateGoal />
                     </Route>
+
                     <Route path="/edit/:id">
-                        <UpdateGoal></UpdateGoal>
+                        <UpdateGoal />
                     </Route>
                 </Switch>
             </Layout>

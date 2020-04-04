@@ -1,0 +1,29 @@
+.search-page {
+    &-box {
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9;
+    }
+    .grid {
+        margin-top: 50px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .search-page {
+        &-box {
+            position: relative !important;
+        }
+        &-box {
+            box-shadow: none !important;
+        }
+        input {
+            border-radius: 10px !important;
+        }
+
+        .grid {
+            margin-top: 15px;
+        }
+    }
+}

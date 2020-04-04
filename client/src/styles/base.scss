@@ -13,6 +13,10 @@ body {
     z-index: 5;
 }
 
+.position-fixed {
+    position: fixed !important;
+}
+
 * [role='button'] {
     cursor: pointer;
 }

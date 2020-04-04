@@ -68,10 +68,10 @@ const CreateGoalForm = ({
         <div className="create_goal">
             <div className="create_goal_header is-flex justify-between has-padding-10 has-background-white top-0 is-full-width has-text-primary">
                 <span
-                    className="material-icons"
+                    className="material-icons is-hidden-desktop"
                     role="button"
                     onClick={handleBack}>
-                    arrow_back_ios
+                    arrow_back
                 </span>{' '}
                 <h3 className="has-margin-auto has-text-primary title is-5">
                     Goal Details

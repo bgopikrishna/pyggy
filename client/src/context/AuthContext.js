@@ -19,7 +19,19 @@ export const AuthProvider = (props) => {
 
     if (isLoading) return <FullScreenLoader />;
 
-    if (isRejected) return <p>Something went wrong, try refreshing the page</p>;
+    if (isRejected)
+        return (
+            <p>
+                Something went wrong, try refreshing the page{' '}
+                <button
+                    className="button"
+                    onClick={() =>
+                        window.localStorage.clear() && window.location.reload()
+                    }>
+                    Reload
+                </button>
+            </p>
+        );
 
     return (
         <AuthContext.Provider

@@ -44,9 +44,12 @@ export const getToken = () => {
 };
 
 const handleAuthResponse = (res) => {
+    console.log('Auth Response =>', res);
+
     const user = res.data;
     storeUserInfo(user);
-    storeAuthKey(res.headers['X-Authtoken']);
+    storeAuthKey(res.headers['X-Authtoken'] || res.headers['x-authtoken']);
+
     return user;
 };
 
