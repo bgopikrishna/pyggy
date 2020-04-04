@@ -33,11 +33,12 @@ export const signInUser = async (req, res) => {
                 .send({ error: { message: 'Password Incorrect' } });
 
         const token = user.generateAuthToken();
-        res.header('X-Authtoken', token).send({
+        res.send({
             name: user.name,
             email: user.email,
             // eslint-disable-next-line no-underscore-dangle
-            _id: user._id
+            _id: user._id,
+            token
         });
     } catch (error) {
         res.status(400).send(error);
@@ -58,10 +59,11 @@ export const signUpUser = async (req, res) => {
         const user = await createItem(User, { name, email, password });
         const token = user.generateAuthToken();
 
-        res.header('X-Authtoken', token).send({
+        res.send({
             name: user.name,
             email: user.email,
-            _id: user._id
+            _id: user._id,
+            token
         });
     } catch (error) {
         res.status(404).send(error);
