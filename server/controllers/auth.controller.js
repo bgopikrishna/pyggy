@@ -21,13 +21,19 @@ export const signInUser = async (req, res) => {
 
     try {
         const user = await User.findOne({ email: email });
-        if (!user) return res.status(400).send({ error: { message: 'User not found' } });
+        if (!user)
+            return res
+                .status(400)
+                .send({ error: { message: 'User not found' } });
 
         const isValidPassword = await comparePassword(password, user.password);
-        if (!isValidPassword) return res.status(400).send({ error: { message: 'Password Incorrect' } });
+        if (!isValidPassword)
+            return res
+                .status(400)
+                .send({ error: { message: 'Password Incorrect' } });
 
         const token = user.generateAuthToken();
-        res.header('x-authtoken', token).send({
+        res.header('X-Authtoken', token).send({
             name: user.name,
             email: user.email,
             // eslint-disable-next-line no-underscore-dangle
@@ -52,7 +58,7 @@ export const signUpUser = async (req, res) => {
         const user = await createItem(User, { name, email, password });
         const token = user.generateAuthToken();
 
-        res.header('x-authtoken', token).send({
+        res.header('X-Authtoken', token).send({
             name: user.name,
             email: user.email,
             _id: user._id

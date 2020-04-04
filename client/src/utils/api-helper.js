@@ -17,7 +17,7 @@ console.log(API_BASE_URL, 'base url');
 async function getData(endpoint, config = {}) {
     return axiosInstance.get(endpoint, {
         ...config,
-        headers: { 'x-authtoken': getToken() }
+        headers: { 'X-Authtoken': getToken() }
     });
 }
 
@@ -25,7 +25,7 @@ async function postData(endpoint, data, config = {}, authorized = true) {
     if (authorized) {
         return axiosInstance.post(endpoint, data, {
             ...config,
-            headers: { 'x-authtoken': getToken() }
+            headers: { 'X-Authtoken': getToken() }
         });
     }
 
@@ -36,7 +36,7 @@ async function putData(endpoint, data = {}, config = {}, authorized = true) {
     if (authorized) {
         return axiosInstance.put(endpoint, data, {
             ...config,
-            headers: { 'x-authtoken': getToken() }
+            headers: { 'X-Authtoken': getToken() }
         });
     }
 
@@ -47,7 +47,7 @@ async function deleteData(endpoint, data = {}, config = {}, authorized = true) {
     if (authorized) {
         return axiosInstance.delete(endpoint, data, {
             ...config,
-            headers: { 'x-authtoken': getToken() }
+            headers: { 'X-Authtoken': getToken() }
         });
     }
 
