@@ -11,7 +11,7 @@ const DesktopNavbar = () => {
                 <Link
                     className="navbar-item has-text-weight-bold has-text-primary title title-3"
                     to="/">
-                    Pyggy
+                    Pyggy <sup>pre-alpha</sup>
                 </Link>
             </div>
 

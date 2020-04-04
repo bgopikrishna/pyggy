@@ -13,8 +13,23 @@ const Account = () => {
                 Logout
             </button>
 
-            <p className="has-text-info">
-                Account specific features coming soon
+            <p className="">Account specific features coming soon</p>
+
+            <p className="has-margin-50">
+                Code by{' '}
+                <a
+                    href="https://bgopikrishna.me"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Gopi Krishna
+                </a>{' '}
+                |{' '}
+                <a
+                    href="https://github.com/bgopikrishna/pyggy"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Source Code
+                </a>
             </p>
         </div>
     );

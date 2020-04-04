@@ -10,7 +10,7 @@ const Toast = () => {
         <Fragment>
             {toasts.map((toast) => (
                 <div
-                    className={`notification is-full-width is-${toast.type}`}
+                    className={`notification box is-full-width is-${toast.type}`}
                     key={toast.id}>
                     <button
                         className="delete"

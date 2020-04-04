@@ -21,7 +21,9 @@ export const GoalCardHeader = ({ goal, showMenu }) => {
         if (answer) {
             updateAGoal([{ ...goal, archived: !archived }]).then(() =>
                 addToast({
-                    message: `Goal ${goal.name} archived`,
+                    message: `Goal ${goal.name} ${
+                        archived ? 'restored' : 'archived'
+                    }`,
                     type: 'info'
                 })
             );

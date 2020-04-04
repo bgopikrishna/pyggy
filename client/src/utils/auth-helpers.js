@@ -27,6 +27,9 @@ export const getUser = () => {
         .getData('/api/user/me')
         .then((res) => res.data)
         .catch((error) => {
+            if (process.env.NODE_ENV === 'production') {
+                logout();
+            }
             return Promise.reject(error);
         });
 };

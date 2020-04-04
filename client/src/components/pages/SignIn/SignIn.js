@@ -3,6 +3,7 @@ import Input from '../../common/input/Input';
 import { Link } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import { useEffect } from 'react';
+import Button from '../../common/Button/Button';
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
@@ -37,6 +38,7 @@ const SignIn = () => {
                     helpText="Please enter correct email"
                     placeholder="Enter your email"
                     icon="email"
+                    required={true}
                 />
                 <Input
                     value={password}
@@ -46,14 +48,15 @@ const SignIn = () => {
                     helpText="Invalid password"
                     icon="lock"
                     label="Password"
+                    required={true}
                 />
 
-                <button
-                    className={`button is-primary has-margin-top-20 ${
-                        loader ? 'is-loading' : ''
-                    }`}>
+                <Button
+                    type="submit"
+                    className="is-primary has-margin-top-20"
+                    loading={loader}>
                     Sign In
-                </button>
+                </Button>
 
                 {error && (
                     <p className="has-text-danger">Invalid email or password</p>

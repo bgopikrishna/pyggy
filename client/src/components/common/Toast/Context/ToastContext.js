@@ -33,10 +33,10 @@ const ToastProvider = (props) => {
         const id = uuid();
         dispatch({ type: ADD_TOAST, payload: { id, message, type } });
 
-        timer = setTimeout(
-            () => dispatch({ type: REMOVE_TOAST, payload: { id } }),
-            3000
-        );
+        // timer = setTimeout(
+        //     () => dispatch({ type: REMOVE_TOAST, payload: { id } }),
+        //     3000
+        // );
     };
 
     const deleteToast = (id) =>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Input from '../../common/input/Input';
 import useAuth from '../../../hooks/useAuth';
 import { Link } from 'react-router-dom';
+import Button from '../../common/Button/Button';
 
 const SignUp = () => {
     const [name, setName] = useState('');
@@ -61,12 +62,12 @@ const SignUp = () => {
                     required={true}
                 />
 
-                <button
-                    className={`button is-primary has-margin-top-20 ${
-                        loader ? 'is-loading' : ''
-                    }`}>
+                <Button
+                    type="submit"
+                    className="is-primary has-margin-top-20"
+                    loading={loader}>
                     Sign Up
-                </button>
+                </Button>
 
                 {error && (
                     <p className="has-text-danger">

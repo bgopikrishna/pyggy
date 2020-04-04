@@ -7,10 +7,16 @@ body {
     min-height: 100vh;
     top: 0;
     overflow: auto;
-}
+}   
 
 .notification {
     z-index: 5;
+}
+
+.title sup {
+    font-size: 0.75rem !important;
+    color: black;
+    opacity: 0.75;
 }
 
 .position-fixed {

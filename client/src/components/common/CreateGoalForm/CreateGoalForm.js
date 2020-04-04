@@ -117,6 +117,7 @@ const CreateGoalForm = ({
                         type="textarea"
                         label="description"
                         placeholder="Description"
+                        required={true}
                     />
 
                     <div className="field">

@@ -44,10 +44,14 @@ async function putData(endpoint, data = {}, config = {}, authorized = true) {
 }
 
 async function deleteData(endpoint, data = {}, config = {}, authorized = true) {
+    console.log('deleteRequest', endpoint, data, config, authorized);
+
     if (authorized) {
-        return axiosInstance.delete(endpoint, data, {
+        console.log('Authorized delete', getToken());
+        return axiosInstance.delete(endpoint, {
             ...config,
-            headers: { 'X-Authtoken': getToken() }
+            headers: { 'X-Authtoken': getToken() },
+            data
         });
     }
 
