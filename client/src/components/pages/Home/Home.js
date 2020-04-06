@@ -8,10 +8,9 @@ import { Link } from 'react-router-dom';
 const Home = () => {
     const { goals } = useGoals();
 
-    // const activeGoals = goals.filter(
-    //     (goal) => goal.saved !== goal.target && !goal.archived
-    // );
-    const activeGoals = [];
+    const activeGoals = goals.filter(
+        (goal) => goal.saved !== goal.target && !goal.archived
+    );
 
     return (
         <section className="home">
@@ -20,8 +19,8 @@ const Home = () => {
                     Active Goals
                 </h2>
             </header>
-            {!!activeGoals.length && <GoalsList goals={activeGoals} />}
-            {!activeGoals.length && (
+            {activeGoals.length !== 0 && <GoalsList goals={activeGoals} />}
+            {activeGoals.length === 0 && (
                 <p className="has-text-centered has-margin-top-75 is-full-width">
                     There are no active goals,{' '}
                     <Link to="/create">Create a goal</Link>
