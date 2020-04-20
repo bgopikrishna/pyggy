@@ -4,11 +4,15 @@ import './styles/index.scss';
 import App from './app/App';
 import * as serviceWorker from './serviceWorker';
 import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider } from '@material-ui/core';
+import theme from './theme';
 
 ReactDOM.render(
-    <AuthProvider>
-        <App />
-    </AuthProvider>,
+    <ThemeProvider theme={theme}>
+        <AuthProvider>
+            <App />
+        </AuthProvider>
+    </ThemeProvider>,
     document.getElementById('root')
 );
 
