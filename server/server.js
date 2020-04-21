@@ -33,4 +33,6 @@ app.use('/api/goals', auth, goalRouter);
 app.use('/api/user', auth, userRouter);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));
+app.listen(PORT, () =>
+    console.log(`App listening on port http://localhost:${PORT}`)
+);

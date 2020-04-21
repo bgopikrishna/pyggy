@@ -5,13 +5,14 @@ import {
     updateAGoal,
     deleteAGoal
 } from '../../controllers/goal.controller';
+import clearRedisCache from '../../middlewares/clearRedisCache';
 
 const router = Router();
 
 router
     .get('/', getAllGoals)
-    .post('/', createAGoal)
-    .put('/:goalId', updateAGoal)
-    .delete('/:goalId', deleteAGoal);
+    .post('/', clearRedisCache, createAGoal)
+    .put('/:goalId', clearRedisCache, updateAGoal)
+    .delete('/:goalId', clearRedisCache, deleteAGoal);
 
 export default router;

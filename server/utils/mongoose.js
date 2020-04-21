@@ -1,13 +1,19 @@
-import { connect } from 'mongoose'
+import mongoose from 'mongoose';
+
+import '../services/cache';
 
 const startMongoose = () => {
-    connect(process.env.MONGO_KEY, { useNewUrlParser: true, useUnifiedTopology: true })
+    mongoose
+        .connect(process.env.MONGO_KEY, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        })
         .then(() => {
-            console.log('Connected to mongoDB')
+            console.log('Connected to mongoDB');
         })
         .catch((err) => {
-            console.log('Error mongodb', err)
-        })
-}
+            console.log('Error mongodb', err);
+        });
+};
 
-export default startMongoose
+export default startMongoose;

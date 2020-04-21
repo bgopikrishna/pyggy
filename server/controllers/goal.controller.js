@@ -9,10 +9,12 @@ export const getAllGoals = async (req, res) => {
     const { id: userId } = req.user;
 
     try {
-        const userGoals = await Goal.find({ user: userId }).sort({});
+        const userGoals = await Goal.find({ user: userId }).cache({
+            key: userId
+        });
         res.send({ goals: userGoals });
     } catch (error) {
-        res.status(500).send(error);
+        res.status(500).send({ message: 'Some thing went wrong' });
     }
 };
 
@@ -20,7 +22,7 @@ export const createAGoal = async (req, res) => {
     const goalObj = req.body;
     const { id: user } = req.user;
 
-    console.log('Usser', req.user, user);
+    console.log('user', req.user);
 
     const validated = validatorForCreateGoal(goalObj, user);
 
