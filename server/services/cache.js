@@ -33,6 +33,8 @@ mongoose.Query.prototype.exec = async function() {
     if (cachedValue) {
         const doc = JSON.parse(cachedValue);
 
+        console.log('serving from redis cache');
+
         if (!Array.isArray(doc)) {
             return doc;
         }
@@ -51,5 +53,15 @@ mongoose.Query.prototype.exec = async function() {
         client.hset(this._hashkey, key, JSON.stringify(result));
     }
 
+    console.log('serving from mongodb');
+
     return result;
 };
+
+function clearHash() {
+    console.log('Clearing Redis Cache for ');
+    client.flushdb();
+}
+
+// eslint-disable-next-line import/prefer-default-export
+export { clearHash };

@@ -1,9 +1,9 @@
-import client from '../services/redisClient';
+import { clearHash } from '../services/cache';
 
 async function clearRedisCache(req, res, next) {
     await next();
 
-    client.del(JSON.stringify(req.user.id));
+    clearHash();
 }
 
 export default clearRedisCache;
