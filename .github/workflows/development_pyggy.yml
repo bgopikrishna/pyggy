@@ -23,7 +23,6 @@ jobs:
       run: |
         yarn install --production=true
         yarn install --cwd client
-        yarn start
 
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v1
