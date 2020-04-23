@@ -1,18 +1,9 @@
 import axios from 'axios';
 import { getToken } from './auth-helpers';
-import { PROD_API_BASE_URL, DEV_API_BASE_URL } from '../constants';
-
-let API_BASE_URL = PROD_API_BASE_URL;
-
-if (process.env.NODE_ENV === 'development') {
-    API_BASE_URL = DEV_API_BASE_URL;
-}
 
 const axiosInstance = axios.create({
-    baseURL: API_BASE_URL
+    baseURL: ''
 });
-
-console.log(API_BASE_URL, 'base url');
 
 async function getData(endpoint, config = {}) {
     return axiosInstance.get(endpoint, {

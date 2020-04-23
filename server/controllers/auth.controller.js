@@ -1,14 +1,15 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable prefer-const */
-import Joi from '@hapi/joi';
-import { compare as comparePassword } from 'bcrypt';
+const comparePassword = require('bcrypt').compare;
+const genHasedPass = require('../utils/hash');
+const User = require('../models/User/user.model');
+const createItem = require('../utils/createItem');
+const {
+    validatorForSignUp,
+    validatorForSignIn
+} = require('../utils/validators');
 
-import genHasedPass from '../utils/hash';
-import User from '../models/User/user.model';
-import createItem from '../utils/createItem';
-import { validatorForSignUp, validatorForSignIn } from '../utils/validators';
-
-export const signInUser = async (req, res) => {
+const signInUser = async (req, res) => {
     const userObj = req.body;
 
     const validated = validatorForSignIn(userObj);
@@ -45,7 +46,7 @@ export const signInUser = async (req, res) => {
     }
 };
 
-export const signUpUser = async (req, res) => {
+const signUpUser = async (req, res) => {
     const validated = validatorForSignUp(req.body);
 
     if (validated.error) {
@@ -69,3 +70,5 @@ export const signUpUser = async (req, res) => {
         res.status(404).send(error);
     }
 };
+
+module.exports = { signInUser, signUpUser };

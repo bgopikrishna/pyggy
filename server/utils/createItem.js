@@ -6,4 +6,4 @@ async function createItem(Model, data) {
     return created;
 }
 
-export default createItem;
+module.exports = createItem;

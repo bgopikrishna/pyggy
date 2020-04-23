@@ -1,5 +1,4 @@
-import Joi from '@hapi/joi';
-
+const Joi = require('@hapi/joi');
 /**
  * A validator which checks the client data for creating a goal
  *
@@ -7,7 +6,7 @@ import Joi from '@hapi/joi';
  * @param {*} user - User Id
  * @returns {*} - validated Goal Object
  */
-export function validatorForCreateGoal(goalObj, user) {
+function validatorForCreateGoal(goalObj, user) {
     const schema = Joi.object({
         name: Joi.string()
             .required()
@@ -40,7 +39,7 @@ export function validatorForCreateGoal(goalObj, user) {
  * @param {*} user - User Id
  * @returns {*} - validated Goal Object
  */
-export function validatorForUpdateGoal(goalObj) {
+function validatorForUpdateGoal(goalObj) {
     const schema = Joi.object({
         name: Joi.string()
             .optional()
@@ -69,7 +68,7 @@ export function validatorForUpdateGoal(goalObj) {
  * @param {*} user - User Details
  * @returns {*} user - validated user
  */
-export function validatorForSignIn(user) {
+function validatorForSignIn(user) {
     const schema = Joi.object({
         email: Joi.string()
             .email()
@@ -89,7 +88,7 @@ export function validatorForSignIn(user) {
  * @param {*} user - User Details
  * @returns {*} user - validated user
  */
-export function validatorForSignUp(user) {
+function validatorForSignUp(user) {
     const schema = Joi.object({
         name: Joi.string()
             .trim()
@@ -107,3 +106,10 @@ export function validatorForSignUp(user) {
     const result = schema.validate(user);
     return result;
 }
+
+module.exports = {
+    validatorForCreateGoal,
+    validatorForUpdateGoal,
+    validatorForSignIn,
+    validatorForSignUp
+};

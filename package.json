@@ -8,12 +8,11 @@
     "license": "MIT",
     "private": false,
     "scripts": {
-        "server": "nodemon --watch server --exec babel-node server/server.js",
-        "client": "yarn  --cwd client start",
-        "start:dev": "concurrently \"yarn  --cwd client start\" \"yarn server\"",
-        "build:client": "yarn --cwd client build",
-        "build:server": "babel server -d dist",
-        "start:prod": "export NODE_ENV=production && node  dist/server.js",
+        "server": "nodemon server.js",
+        "client": "yarn --cwd client start",
+        "start:dev": "concurrently \"yarn client\" \"yarn server\"",
+        "build:client": "yarn --cwd client build --production=false",
+        "start": "export NODE_ENV=production && pm2 start server.js",
         "heroku-postbuild": "yarn build:server"
     },
     "dependencies": {
@@ -28,13 +27,10 @@
         "joi-objectid": "^3.0.1",
         "jsonwebtoken": "^8.5.1",
         "mongoose": "^5.8.11",
-        "redis": "^3.0.2"
+        "redis": "^3.0.2",
+        "pm2": "^4.3.1"
     },
     "devDependencies": {
-        "@babel/cli": "^7.8.4",
-        "@babel/core": "^7.8.4",
-        "@babel/node": "^7.8.4",
-        "@babel/preset-env": "^7.8.4",
         "@commitlint/cli": "^8.3.5",
         "@commitlint/config-conventional": "^8.3.4",
         "eslint": "^6.8.0",

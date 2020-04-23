@@ -1,11 +1,11 @@
-import { Router } from 'express';
-import {
+const { Router } = require('express');
+const {
     getAllGoals,
     createAGoal,
     updateAGoal,
     deleteAGoal
-} from '../../controllers/goal.controller';
-import clearRedisCache from '../../middlewares/clearRedisCache';
+} = require('../../controllers/goal.controller');
+const clearRedisCache = require('../../middlewares/clearRedisCache');
 
 const router = Router();
 
@@ -15,4 +15,4 @@ router
     .put('/:goalId', clearRedisCache, updateAGoal)
     .delete('/:goalId', clearRedisCache, deleteAGoal);
 
-export default router;
+module.exports = router;

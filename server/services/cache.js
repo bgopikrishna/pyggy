@@ -1,6 +1,6 @@
 /* eslint-disable func-names */
-import mongoose from 'mongoose';
-import redisClient from './redisClient';
+const mongoose = require('mongoose');
+const redisClient = require('./redisClient');
 
 // eslint-disable-next-line prefer-destructuring
 const exec = mongoose.Query.prototype.exec;
@@ -64,4 +64,4 @@ function clearHash() {
 }
 
 // eslint-disable-next-line import/prefer-default-export
-export { clearHash };
+module.exports = { clearHash };

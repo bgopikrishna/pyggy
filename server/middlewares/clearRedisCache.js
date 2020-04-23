@@ -1,4 +1,4 @@
-import { clearHash } from '../services/cache';
+const { clearHash } = require('../services/cache');
 
 async function clearRedisCache(req, res, next) {
     await next();
@@ -6,4 +6,4 @@ async function clearRedisCache(req, res, next) {
     clearHash();
 }
 
-export default clearRedisCache;
+module.exports = clearRedisCache;
