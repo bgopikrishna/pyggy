@@ -20,6 +20,8 @@ jobs:
                   node-version: '12.x'
 
             - name: yarn install, start and build:client
+            env:
+              CI: ''
               run: |
                   yarn install --production=true
                   yarn install --cwd client
