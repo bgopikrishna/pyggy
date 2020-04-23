@@ -5,13 +5,14 @@ const {
     updateAGoal,
     deleteAGoal
 } = require('../../controllers/goal.controller');
+const clearRedisCache = require('../../middlewares/clearRedisCache');
 
 const router = Router();
 
 router
     .get('/', getAllGoals)
-    .post('/', createAGoal)
-    .put('/:goalId', updateAGoal)
-    .delete('/:goalId', deleteAGoal);
+    .post('/', clearRedisCache, createAGoal)
+    .put('/:goalId', clearRedisCache, updateAGoal)
+    .delete('/:goalId', clearRedisCache, deleteAGoal);
 
 module.exports = router;
