@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-useless-escape */
-import { Schema, model } from 'mongoose';
-import jwt from 'jsonwebtoken';
+const { Schema, model } = require('mongoose');
+const jwt = require('jsonwebtoken');
 
 const userSchema = new Schema({
     name: {
@@ -14,7 +14,10 @@ const userSchema = new Schema({
         trim: true,
         lowercase: true,
         required: true,
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
+        match: [
+            /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+            'Please fill a valid email address'
+        ],
         unique: true
     },
     password: {
@@ -32,6 +35,4 @@ userSchema.methods.generateAuthToken = function() {
 
 const User = model('Users', userSchema);
 
-export { User, userSchema };
-
-export default User;
+module.exports = User;
