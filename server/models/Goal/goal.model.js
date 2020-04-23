@@ -1,5 +1,5 @@
 /* eslint-disable func-names */
-import { Schema, model } from 'mongoose';
+const { Schema, model } = require('mongoose');
 
 const goalSchema = new Schema({
     name: {
@@ -50,5 +50,4 @@ const goalSchema = new Schema({
 
 const Goal = model('Goals', goalSchema);
 
-export { Goal, goalSchema };
-export default Goal;
+module.exports = Goal;

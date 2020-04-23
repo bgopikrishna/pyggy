@@ -1,11 +1,11 @@
-import Goal from '../models/Goal/goal.model';
-import createItem from '../utils/createItem';
-import {
+const {
     validatorForCreateGoal,
     validatorForUpdateGoal
-} from '../utils/validators';
+} = require('../utils/validators');
+const Goal = require('../models/Goal/goal.model');
+const createItem = require('../utils/createItem');
 
-export const getAllGoals = async (req, res) => {
+const getAllGoals = async (req, res) => {
     const { id: userId } = req.user;
 
     try {
@@ -16,7 +16,7 @@ export const getAllGoals = async (req, res) => {
     }
 };
 
-export const createAGoal = async (req, res) => {
+const createAGoal = async (req, res) => {
     const goalObj = req.body;
     const { id: user } = req.user;
 
@@ -34,7 +34,7 @@ export const createAGoal = async (req, res) => {
     }
 };
 
-export const updateAGoal = async (req, res) => {
+const updateAGoal = async (req, res) => {
     const goalObj = req.body;
     const { goalId } = req.params;
 
@@ -58,7 +58,7 @@ export const updateAGoal = async (req, res) => {
     }
 };
 
-export const deleteAGoal = async (req, res) => {
+const deleteAGoal = async (req, res) => {
     const { goalId } = req.params;
     if (!goalId) {
         return res.status(400).send({
@@ -83,3 +83,5 @@ export const deleteAGoal = async (req, res) => {
         res.status(400).send(error);
     }
 };
+
+module.exports = { getAllGoals, createAGoal, updateAGoal, deleteAGoal };
