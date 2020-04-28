@@ -28,7 +28,7 @@ const userSchema = new Schema({
 });
 
 // eslint-disable-next-line func-names
-userSchema.methods.generateAuthToken = function() {
+userSchema.methods.generateAuthToken = function () {
     const token = jwt.sign({ id: this._id }, process.env.JWT_KEY);
     return token;
 };

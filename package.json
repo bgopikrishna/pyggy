@@ -11,8 +11,8 @@
         "server": "nodemon server.js",
         "client": "yarn --cwd client start",
         "start:dev": "concurrently \"yarn client\" \"yarn server\"",
-        "build:client": "yarn --cwd client build --production=false",
-        "start": "export NODE_ENV=production && pm2 start server.js",
+        "build:client": "yarn --cwd client build ",
+        "start": "export NODE_ENV=production && pm2 --no-daemon start server.js",
         "heroku-postbuild": "yarn build:server"
     },
     "dependencies": {

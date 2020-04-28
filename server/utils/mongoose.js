@@ -1,7 +1,7 @@
 const { connect } = require('mongoose');
 
 const startMongoose = () => {
-    connect(process.env.MONGO_KEY, {
+    connect(process.env.MONGO_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })

@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { User } = require('../../models/User/user.model');
+const User = require('../../models/User/user.model');
 
 const router = Router();
 
@@ -13,7 +13,8 @@ router.get('/me', async (req, res) => {
         });
         res.send(userDetails);
     } catch (error) {
-        res.status(500).send({ message: 'Internal Server Error' });
+        console.log(error)
+        res.status(500).send({ message: ' Server Error' });
     }
 });
 
