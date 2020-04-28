@@ -1,5 +1,18 @@
 /* eslint-disable func-names */
 const { Schema, model } = require('mongoose');
+const { WITHDRAW, DEPOSIT } = require('../../utils/constants');
+
+const recordSchema = new Schema({
+    amount: Number,
+    recordType: {
+        type: String,
+        enum: [WITHDRAW, DEPOSIT]
+    },
+    time: {
+        type: Date,
+        default: Date.now()
+    }
+});
 
 const goalSchema = new Schema({
     name: {
@@ -11,10 +24,6 @@ const goalSchema = new Schema({
         default: ''
     },
     labels: [{ type: String }],
-    saved: {
-        type: Number,
-        default: 0
-    },
     target: {
         type: Number,
         required: true
@@ -31,13 +40,6 @@ const goalSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Users'
     },
-    // eslint-disable-next-line func-names
-    completed: {
-        type: Boolean,
-        default: function() {
-            return Math.round(this.saved) === Math.round(this.target);
-        }
-    },
     color: {
         type: String,
         default: 'Black'
@@ -45,7 +47,27 @@ const goalSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now()
+    },
+    records: {
+        type: [recordSchema],
+        default: []
     }
+});
+
+goalSchema.virtual('saved').get(function() {
+    const totalSaved = this.records.reduce(
+        (acc, currentVal) => acc + parseFloat(currentVal.amount),
+        0
+    );
+    return totalSaved;
+});
+
+goalSchema.virtual('completed').get(function() {
+    const totalSaved = this.records.reduce(
+        (acc, currentVal) => acc + parseFloat(currentVal.amount),
+        0
+    );
+    return this.target.target === totalSaved;
 });
 
 const Goal = model('Goals', goalSchema);

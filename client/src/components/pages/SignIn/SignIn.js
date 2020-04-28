@@ -16,12 +16,10 @@ const SignIn = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoader(() => true);
-        login({ email, password })
-            .then(() => setLoader(() => false))
-            .catch((err) => {
-                setLoader(false);
-                setError(true);
-            });
+        login({ email, password }).catch((err) => {
+            setLoader(false);
+            setError(true);
+        });
     };
     return (
         <div className="auth-form is-flex justify-content-center align-items-center">
