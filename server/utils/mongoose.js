@@ -1,4 +1,6 @@
-const { connect } = require('mongoose');
+const { connect, set } = require('mongoose');
+
+set('toJSON', { virtuals: true });
 
 const startMongoose = () => {
     connect(process.env.MONGO_URI, {

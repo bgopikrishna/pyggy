@@ -1,4 +1,5 @@
 const Joi = require('@hapi/joi');
+const { WITHDRAW, DEPOSIT } = require('./constants');
 /**
  * A validator which checks the client data for creating a goal
  *
@@ -62,6 +63,19 @@ function validatorForUpdateGoal(goalObj) {
     return validated;
 }
 
+function validatorForUpdateGoalRecord(record) {
+    const schema = Joi.object({
+        recordType: Joi.string()
+            .valid(WITHDRAW, DEPOSIT)
+            .required(),
+        amount: Joi.number().required()
+    });
+
+    const validated = schema.validate(record);
+
+    return validated;
+}
+
 /**
  * A Joi Validator which validates the user details sent from client for signIn
  *
@@ -110,6 +124,7 @@ function validatorForSignUp(user) {
 module.exports = {
     validatorForCreateGoal,
     validatorForUpdateGoal,
+    validatorForUpdateGoalRecord,
     validatorForSignIn,
     validatorForSignUp
 };

@@ -1,20 +1,25 @@
 const {
     validatorForCreateGoal,
-    validatorForUpdateGoal
+    validatorForUpdateGoal,
+    validatorForUpdateGoalRecord
 } = require('../utils/validators');
 const Goal = require('../models/Goal/goal.model');
 const createItem = require('../utils/createItem');
+const { WITHDRAW } = require('../utils/constants');
 
 const getAllGoals = async (req, res) => {
     const { id: userId } = req.user;
 
     try {
-        const userGoals = await Goal.find({ user: userId }).cache({
-            key: userId
-        });
+        const userGoals = await Goal.find({ user: userId })
+            // .populate('completed saved')
+            .cache({
+                key: userId
+            });
         res.send({ goals: userGoals });
     } catch (error) {
-        res.status(500).send({ message: 'Some thing went wrong' });
+        console.error(error);
+        res.status(500).send({ message: ' thing went wrong' });
     }
 };
 
@@ -60,12 +65,43 @@ const updateAGoal = async (req, res) => {
     }
 };
 
+const updateGoalRecord = async (req, res) => {
+    const record = req.body;
+    const { goalId } = req.params;
+
+    const validated = validatorForUpdateGoalRecord(record);
+
+    if (validated.error) {
+        return res.status(400).send(validated.error.details);
+    }
+
+    const rec = { ...validated.value, time: Date.now() };
+
+    if (rec.recordType === WITHDRAW) {
+        rec.amount = 0 - rec.amount;
+    }
+    try {
+        const goal = await Goal.findByIdAndUpdate(
+            goalId,
+            {
+                $push: { records: rec }
+            },
+            {
+                new: true
+            }
+        );
+        res.send({ goal });
+    } catch (error) {
+        res.status(500).send(error);
+    }
+};
+
 const deleteAGoal = async (req, res) => {
     const { goalId } = req.params;
     if (!goalId) {
         return res.status(400).send({
             error: {
-                message: 'Error in Deleting the Goal'
+                message: 'Error  Deleting the Goal'
             }
         });
     }
@@ -86,4 +122,10 @@ const deleteAGoal = async (req, res) => {
     }
 };
 
-module.exports = { getAllGoals, createAGoal, updateAGoal, deleteAGoal };
+module.exports = {
+    getAllGoals,
+    createAGoal,
+    updateAGoal,
+    updateGoalRecord,
+    deleteAGoal
+};
