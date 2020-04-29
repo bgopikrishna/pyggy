@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import { ToastProvider, Toast } from '../components/common/Toast';
-import DesktopVersion from './DesktopVersion';
 import FullScreenLoader from '../components/common/FullScreenLoader/FullScreenLoader';
 
 const UnAuthenticatedRoutes = React.lazy(() =>
