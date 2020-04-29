@@ -54,7 +54,9 @@ export const GoalCardHeader = ({ goal, showMenu }) => {
 
     return (
         <header className="card-header is-shadowless">
-            <p className="card-header-title">{name}</p>
+            <h3 className="card-header-title">
+                <Link to={`info/${goal._id}`}>{name}</Link>
+            </h3>
             {showMenu && (
                 <Dropdown>
                     {!archived && (

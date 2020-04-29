@@ -9,14 +9,9 @@ const CreateGoal = () => {
     const history = useHistory();
     const { addToast } = useToast();
 
-    let timer;
-
     const redirectToHome = () => {
         addToast({ message: 'Goal created', type: 'success' });
-
-        timer = setTimeout(() => {
-            history.push('/');
-        }, 3000);
+        history.push('/');
     };
 
     const handleError = () => {
@@ -34,10 +29,6 @@ const CreateGoal = () => {
         console.log('Goal obj in creat goal', goal);
         run(goal);
     };
-
-    useEffect(() => {
-        return () => clearTimeout(timer);
-    }, [timer]);
 
     // useEffect(() => {
     //     console.log(`isRejected ${isRejected}`);
