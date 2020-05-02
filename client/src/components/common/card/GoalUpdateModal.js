@@ -6,30 +6,38 @@ import Button from '../Button/Button';
 import { useAsync } from 'react-async';
 import { useToast } from '../Toast';
 import { useGoals } from '../../../context/GoalsContext';
+import { RECORD_TYPES } from '../../../constants';
 
 export function GoalUpdateModal({ goal, visibility, toggleVisibilty }) {
     const { addToast } = useToast();
 
-    const { updateAGoal } = useGoals();
+    const { updateRecordOfAGoal } = useGoals();
 
     const { saved, target, name } = goal;
-    const [addAmount, setAddAmount] = useState('');
+    const [amount, setAmount] = useState('');
+    const [recordType, setRecordType] = useState(RECORD_TYPES.DEPOSIT);
+    const [error, setError] = useState(null);
 
     const onSuccess = () => {
         addToast({ message: `Progress updated for ${name}`, type: 'info' });
+        setError(null);
         toggleVisibilty();
     };
 
-    const { isLoading, run, error } = useAsync({
-        deferFn: updateAGoal,
-        onResolve: onSuccess
+    const onError = (err) => {
+        setError(err);
+    };
+
+    const { isLoading, run } = useAsync({
+        deferFn: updateRecordOfAGoal,
+        onResolve: onSuccess,
+        onReject: onError
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const updatedAmount = parseFloat(saved) + parseFloat(addAmount);
-        const updatedGoal = { ...goal, saved: updatedAmount };
-        run(updatedGoal);
+        console.log('Add');
+        run({ amount, recordType }, goal._id);
     };
 
     return (
@@ -37,15 +45,31 @@ export function GoalUpdateModal({ goal, visibility, toggleVisibilty }) {
             <form
                 className="is-full-width field has-background-white has-padding-15"
                 onSubmit={handleSubmit}>
+                <select
+                    name="recordType"
+                    id="recordType"
+                    value={recordType}
+                    onChange={(e) => setRecordType(e.target.value)}>
+                    <option value={RECORD_TYPES.DEPOSIT}>
+                        {RECORD_TYPES.DEPOSIT}
+                    </option>
+                    <option value={RECORD_TYPES.WITHDRAW}>
+                        {RECORD_TYPES.WITHDRAW}
+                    </option>
+                </select>
                 <Input
-                    value={addAmount}
-                    onChange={(e) => setAddAmount(e.target.value)}
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
                     type="number"
                     label="Add an amount of"
                     placeholder="Add an amount of"
                     required={true}
                     min={0}
-                    max={parseFloat(target) - parseFloat(saved)}
+                    max={
+                        recordType === RECORD_TYPES.DEPOSIT
+                            ? parseFloat(target) - parseFloat(saved)
+                            : parseFloat(saved)
+                    }
                 />
                 <Button
                     loading={isLoading}
