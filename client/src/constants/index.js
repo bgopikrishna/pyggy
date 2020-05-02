@@ -26,3 +26,8 @@ export const GOAL_COLORS = [
     'Grey',
     'Taupe'
 ];
+
+export const RECORD_TYPES = Object.freeze({
+    WITHDRAW: 'withdraw',
+    DEPOSIT: 'deposit'
+});

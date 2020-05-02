@@ -10,7 +10,8 @@ import {
     getGoals,
     doCreateGoal,
     doUpdateGoal,
-    doDeleteGoal
+    doDeleteGoal,
+    doAddRecordForGoal
 } from '../utils/goal-helpers';
 import useThunkReducer from '../hooks/useThunkReducer';
 
@@ -35,7 +36,7 @@ const reducer = (state, action) => {
 
         const newGoals = state.map((goal) => {
             if (goal._id === updatedGoal._id) {
-                goal = updatedGoal;
+                return updatedGoal;
             }
             return goal;
         });
@@ -80,7 +81,11 @@ const GoalsProvider = (props) => {
             dispatch({ type: DELETE_A_GOAL, payload: { goal } })
         );
 
-        
+    const updateRecordOfAGoal = ([record, goalId]) =>
+        doAddRecordForGoal(record, goalId).then((goal) =>
+            dispatch({ type: UPDATE_A_GOAL, payload: { goal } })
+        );
+
     useEffect(() => {
         getAllGoals();
     }, [getAllGoals]);
@@ -92,6 +97,7 @@ const GoalsProvider = (props) => {
                 createAGoal,
                 getAllGoals,
                 updateAGoal,
+                updateRecordOfAGoal,
                 deleteAGoal
             }}
             {...props}

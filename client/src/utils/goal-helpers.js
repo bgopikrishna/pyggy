@@ -20,4 +20,16 @@ const doDeleteGoal = (goal) => {
         .then((res) => res.data.goal);
 };
 
-export { getGoals, doCreateGoal, doUpdateGoal, doDeleteGoal };
+const doAddRecordForGoal = (record, goalId) => {
+    return apiHelper
+        .putData(`/api/goals/record/${goalId}`, record)
+        .then((res) => res.data.goal);
+};
+
+export {
+    getGoals,
+    doCreateGoal,
+    doUpdateGoal,
+    doDeleteGoal,
+    doAddRecordForGoal
+};
