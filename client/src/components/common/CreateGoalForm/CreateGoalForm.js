@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import DatePicker from 'react-date-picker';
 import Input from '../input/Input';
 import useSetState from '../../../hooks/useSetState';
 import TagsInput from '../TagsInput/TagsInput';
@@ -14,7 +15,8 @@ const defaultState = {
     labels: [],
     favourite: false,
     color: 'Teal',
-    saved: 0
+    saved: 0,
+    endDate: ''
 };
 
 const CreateGoalForm = ({
@@ -27,7 +29,11 @@ const CreateGoalForm = ({
     const [labelsElemFocus, setLabelsElemFocus] = useState(false);
 
     const handleChange = (e) => {
-        setState({ [e.target.name]: e.target.value });
+        if (e.target.type === 'checkbox') {
+            setState({ [e.target.name]: e.target.checked });
+        } else {
+            setState({ [e.target.name]: e.target.value });
+        }
     };
 
     const handleLabels = (labels) => setState({ labels });
@@ -62,7 +68,8 @@ const CreateGoalForm = ({
         labels,
         favourite,
         color,
-        saved
+        saved,
+        endDate
     } = goalObj;
     return (
         <div className="create_goal">
@@ -99,6 +106,23 @@ const CreateGoalForm = ({
                         required={true}
                         min={0}
                     />
+                    <div className="field">
+                        <label
+                            htmlFor="endDate"
+                            className="label is-capitalized">
+                            End Date
+                        </label>
+                        <DatePicker
+                            className="control"
+                            onChange={(val) => setState({ endDate: val })}
+                            value={endDate ? new Date(endDate) : null}
+                            name="endDate"
+                            required={true}
+                            clearIcon={null}
+                            minDate={new Date()}
+                        />
+                    </div>
+
                     {mode !== 'create' && (
                         <Input
                             value={saved}
@@ -167,7 +191,7 @@ const CreateGoalForm = ({
                                 type="checkbox"
                                 name="favourite"
                                 onChange={handleChange}
-                                value={favourite}
+                                checked={favourite}
                                 id="favourite"
                             />
                             &nbsp;As Favourite (optional)

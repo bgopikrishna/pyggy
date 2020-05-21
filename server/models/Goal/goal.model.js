@@ -51,6 +51,10 @@ const goalSchema = new Schema({
     records: {
         type: [recordSchema],
         default: []
+    },
+    endDate: {
+        type: Date,
+        required: true
     }
 });
 

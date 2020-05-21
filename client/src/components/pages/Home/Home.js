@@ -1,8 +1,7 @@
 import React from 'react';
 import { useGoals } from '../../../context/GoalsContext';
-import GoalCard from '../../common/card/GoalCard';
-import Modal from '../../common/modal/Modal';
-import GoalsList from '../../common/GoalsList/GoalsList';
+
+import GoalsList from '../../GoalsList/GoalsList';
 import { Link } from 'react-router-dom';
 
 const Home = () => {

@@ -1,9 +1,8 @@
 import React from 'react';
 import { useGoals } from '../../../context/GoalsContext';
-import GoalCard from '../../common/card/GoalCard';
 import Tabs from '../../common/Tabs/Tabs';
 import { useState } from 'react';
-import GoalsList from '../../common/GoalsList/GoalsList';
+import GoalsList from '../../GoalsList/GoalsList';
 
 const TABS = [
     {
