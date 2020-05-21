@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useGoals } from '../../../context/GoalsContext';
 import { useState } from 'react';
-import GoalsList from '../../common/GoalsList/GoalsList';
+import GoalsList from '../../GoalsList/GoalsList';
 import './Search.scss';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';

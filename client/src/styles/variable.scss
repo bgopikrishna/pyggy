@@ -22,10 +22,13 @@
     --Taupe: rgb(204, 172, 147);
 }
 
-$family-sans-serif: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+$family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, Oxygen, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
-$primary: #f00094;
+// $primary: #36be00;
+// $link: dodgerblue;
+
+$font-size: 14px;
 
 $goal-colors: 'BerryRed', 'Red', 'Orange', 'Yellow', 'OliveGreen', 'LimeGreen',
     'Green', 'MintGreen', 'Teal', 'SkyBlue', 'LightBlue', 'Blue', 'Grape',
@@ -35,3 +38,6 @@ $goal-colors: 'BerryRed', 'Red', 'Orange', 'Yellow', 'OliveGreen', 'LimeGreen',
 @import '../../node_modules/bulma-helpers/bulma-helpers.sass';
 @import '../../node_modules/bulma/sass/utilities/initial-variables.sass';
 @import '../../node_modules/bulma/sass/utilities/derived-variables.sass';
+
+$scheme-main: $black;
+$scheme-invert: $white;

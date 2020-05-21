@@ -27,7 +27,8 @@ function validatorForCreateGoal(goalObj, user) {
         color: Joi.string().optional(),
         saved: Joi.number()
             .optional()
-            .default(0)
+            .default(0),
+        endDate: Joi.date().required()
     });
     const validated = schema.validate({ ...goalObj, user });
     return validated;
@@ -57,7 +58,8 @@ function validatorForUpdateGoal(goalObj) {
             .items(Joi.string())
             .optional(),
         favourite: Joi.boolean().optional(),
-        archived: Joi.boolean().optional()
+        archived: Joi.boolean().optional(),
+        endDate: Joi.date().required()
     });
     const validated = schema.validate(goalObj);
     return validated;

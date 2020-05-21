@@ -1,0 +1,20 @@
+.goal_card {
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease-in;
+    transition: opacity 0.3s ease-out;
+
+    opacity: 0.75;
+
+    .progress {
+        height: 0.5rem !important;
+    }
+
+    &:hover,
+    &:focus {
+        opacity: 1;
+        box-shadow: 0 0.2em 0.2em -0.02em rgba(10, 10, 10, 0.1),
+            0 0px 0 0 rgba(10, 10, 10, 0.02);
+        transition: box-shadow 0.3s ease-out;
+        transition: opacity 0.3s ease-out;
+    }
+}

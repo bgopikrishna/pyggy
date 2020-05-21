@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { useState } from 'react';
 import './Dropdown.scss';
 import useOnClickOutside from '../../../hooks/useOnClickOutside';
+import DropdownItem from './DropdownItem';
 
 const Dropdown = ({
     label,
@@ -27,7 +28,6 @@ const Dropdown = ({
         setDropdownState(!dropdownState);
     };
 
-
     return (
         <div
             className={`dropdown is-right ${className} ${
@@ -37,6 +37,7 @@ const Dropdown = ({
                 <button
                     className="button is-borderless"
                     aria-haspopup="true"
+                    aria-label="more options"
                     onClick={toggleDropdown}
                     aria-controls={`dropdown-menu ${label}`}>
                     {label && <span>{value ? value : label}</span>}
@@ -50,19 +51,18 @@ const Dropdown = ({
                 className={`dropdown-menu ${label}`}
                 id={`dropdown-menu`}
                 role="menu">
-                <div className="dropdown-content">
+                <div className="dropdown-content is-capitalized">
                     {children
                         ? children
                         : items.map((item) => (
-                              <span
-                                  role="button"
+                              <DropdownItem
                                   key={item}
-                                  onClick={() => onSelect(item)}
                                   className={`dropdown-item ${
                                       activeItem === item ? 'is-active' : ''
-                                  }`}>
+                                  }`}
+                                  onClick={() => onSelect(item)}>
                                   {item}
-                              </span>
+                              </DropdownItem>
                           ))}
                 </div>
             </div>

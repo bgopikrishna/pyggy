@@ -6,5 +6,6 @@
         ".vscode{,/**}"
     ],
     "appService.defaultWebAppToDeploy": "/subscriptions/cceccf79-c7ea-49dd-8459-cad102d5b0e0/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/pyggy",
-    "appService.deploySubpath": ""
+    "appService.deploySubpath": "",
+    "deno.enable": false
 }
