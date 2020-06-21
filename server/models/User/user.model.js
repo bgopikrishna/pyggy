@@ -24,12 +24,27 @@ const userSchema = new Schema({
         type: String,
         required: true,
         minlength: 6
+    },
+    lastPassUpdate: {
+        type: Date,
+        default: Date.now()
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now()
     }
 });
 
 // eslint-disable-next-line func-names
-userSchema.methods.generateAuthToken = function () {
+userSchema.methods.generateAuthToken = function() {
     const token = jwt.sign({ id: this._id }, process.env.JWT_KEY);
+    return token;
+};
+
+// eslint-disable-next-line func-names
+userSchema.methods.generatePassResetToken = function() {
+    const secret = this.password + this.createdAt;
+    const token = jwt.sign({ id: this._id }, secret, { expiresIn: 3600 });
     return token;
 };
 

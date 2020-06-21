@@ -8,6 +8,7 @@ const goalRouter = require('./server/routes/goals/goal.route');
 const authRouter = require('./server/routes/authentication/auth.route');
 const auth = require('./server/middlewares/auth.middleware');
 const userRouter = require('./server/routes/user/user.route');
+const emailRouter = require('./server/routes/email/email.route');
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ app.get('/api', (req, res) => {
 app.use('/api/auth', authRouter);
 app.use('/api/goals', auth, goalRouter);
 app.use('/api/user', auth, userRouter);
+app.use('/api/', emailRouter);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
