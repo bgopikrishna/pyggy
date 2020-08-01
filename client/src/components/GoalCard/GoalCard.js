@@ -1,49 +1,107 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { differenceInDays } from 'date-fns';
-import './GoalCard.scss';
-
 import { GoalUpdateModal } from './GoalUpdateModal';
-import { useState } from 'react';
 import { Card, CardContent, CardFooter, CardHeader } from '../common/Card';
 import Dropdown from '../common/Dropdown/Dropdown';
 import DropdownItem from '../common/Dropdown/DropdownItem';
 import Button from '../common/Button/Button';
 import 'react-circular-progressbar/dist/styles.css';
+import { useGoals } from '../../context/GoalsContext';
+import { useToast } from '../common/Toast';
+import './GoalCard.scss';
 
-const GoalCard = ({ goal, showMenu, deleteAGoal, updateAGoal }) => {
+const GoalCard = ({ goal, showMenu }) => {
     const { saved, target, color, archived, name, id, labels, endDate } = goal;
 
     const [updateDialogVisibility, setUpdateDialogVisibility] = useState(false);
+    const { updateAGoal, deleteAGoal } = useGoals();
 
-    const cardActions = ['edit', 'archive', 'delete'];
+    const { addToast } = useToast();
 
     const progress = Math.round((parseFloat(saved) / parseFloat(target)) * 100);
 
-    const handleCardAction = (opt) => {};
+    const handleCardAction = (opt) => {
+        if (opt === 'delete') return handleDelete();
+
+        if (opt === 'archive') return handleArchive();
+    };
+
+    const handleArchive = async () => {
+        const message = `Are you sure you want to ${
+            archived ? 'restore' : 'archive'
+        } this?`;
+
+        const answer = window.confirm(message);
+
+        if (answer) {
+            try {
+                await updateAGoal([{ ...goal, archived: !archived }]);
+                addToast({
+                    message: `Goal ${goal.name} ${
+                        archived ? 'restored' : 'archived'
+                    }`,
+                    type: 'info'
+                });
+            } catch (error) {
+                addToast({
+                    message: `Error updating ${goal.name}`,
+                    type: 'danger'
+                });
+            }
+        }
+    };
+
+    const handleDelete = async () => {
+        const message = `Are you sure you want to permanently delete this?`;
+
+        const answer = window.confirm(message);
+
+        if (answer) {
+            try {
+                await deleteAGoal([goal]);
+                addToast({
+                    message: `Goal ${goal.name} deleted successfully`,
+                    type: 'info'
+                });
+            } catch (error) {
+                addToast({
+                    message: `Error deleting ${goal.name}`,
+                    type: 'info'
+                });
+            }
+        }
+    };
 
     return (
         <div className="goal_card card has-margin-10 has-background-white is-full-width">
             <Card>
                 <CardHeader
-                    actions={cardActions}
                     header={name}
                     linkTo={`/info/${id}`}
                     onActionSelect={handleCardAction}>
-                    <Dropdown>
-                        <DropdownItem to={`/edit/${id}`} icon="edit">
-                            Edit
-                        </DropdownItem>
-                        <DropdownItem onClick={() => {}} icon="archive">
-                            Archive
-                        </DropdownItem>
-                        <DropdownItem
-                            onClick={() => {}}
-                            icon="delete"
-                            className="has-text-danger">
-                            Delete
-                        </DropdownItem>
-                    </Dropdown>
+                    {showMenu && (
+                        <Dropdown>
+                            <DropdownItem to={`/edit/${id}`} icon="edit">
+                                Edit
+                            </DropdownItem>
+                            <DropdownItem
+                                onClick={() => {
+                                    handleCardAction('archive');
+                                }}
+                                icon={!archived ? 'archive' : 'unarchive'}>
+                                {!archived ? 'Archive' : 'Restore'}
+                            </DropdownItem>
+                            <DropdownItem
+                                onClick={() => {
+                                    handleCardAction('delete');
+                                }}
+                                icon="delete"
+                                className="has-text-danger">
+                                Delete
+                            </DropdownItem>
+                        </Dropdown>
+                    )}
                 </CardHeader>
 
                 <CardContent linkTo={`/info/${id}`}>

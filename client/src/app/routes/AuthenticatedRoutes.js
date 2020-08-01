@@ -9,12 +9,21 @@ import UpdateGoal from '../../components/pages/UpdateGoal/UpdateGoal';
 import List from '../../components/pages/List/List';
 import Search from '../../components/pages/Search/Search';
 import GoalDetails from '../../components/pages/GoalDetails/GoalDetails';
+import ResetPassword from '../../components/pages/ResetPassword/ResetPassword';
+import ChangePassword from '../../components/pages/ChangePassword/ChangePassword';
 
 const AuthenticatedRoutes = () => {
     return (
         <GoalsProvider>
             <Layout>
                 <Switch>
+                    <Route path="/account/reset_password">
+                        <ResetPassword />
+                    </Route>
+                    <Route path="/account/change_password/:id/:token">
+                        <ChangePassword />
+                    </Route>
+
                     <Route path="/" exact>
                         <Redirect to="/home" />
                     </Route>
@@ -39,7 +48,7 @@ const AuthenticatedRoutes = () => {
                         <List />
                     </Route>
 
-                    <Route path="/account">
+                    <Route exact path="/account">
                         <Account />
                     </Route>
 

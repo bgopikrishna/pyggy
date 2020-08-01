@@ -65,6 +65,11 @@ const SignIn = () => {
                     className="has-margin-25 has-text-centered is-capitalized">
                     don't have an account? Sign Up
                 </Link>
+                <Link
+                    to="/account/reset_password"
+                    className=" has-text-centered has-text-danger is-capitalized">
+                    Forgot Password?
+                </Link>
             </form>
         </div>
     );

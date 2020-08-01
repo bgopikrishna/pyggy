@@ -12,7 +12,7 @@ const Home = () => {
     );
 
     return (
-        <section className="home">
+        <section className="home has-margin-bottom-30 has-margin-top-15">
             <header className="is-flex justify-center">
                 <h2 className="title is-4 has-text-center has-text-primary">
                     Active Goals

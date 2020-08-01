@@ -6,3 +6,20 @@
     display: flex;
     justify-content: center;
 }
+.notifications-enter {
+    opacity: 0.01;
+}
+
+.notifications-enter.notifications-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+}
+
+.notifications-leave {
+    opacity: 1;
+}
+
+.notifications-leave.notifications-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+}

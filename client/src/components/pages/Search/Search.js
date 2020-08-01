@@ -73,7 +73,7 @@ const Search = () => {
                         ref={inputRef}
                         onChange={(e) => handleInput(e.target.value)}
                         value={searchInput}
-                        className="input is-radiusless"
+                        className="input "
                         type="search"
                         placeholder="Search by goal name, labels and description"
                     />

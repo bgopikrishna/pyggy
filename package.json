@@ -13,7 +13,7 @@
         "start:dev": "NODE_ENV=development concurrently \"yarn client\" \"yarn server\"",
         "build:client": "yarn --cwd client build ",
         "start": "NODE_ENV=production  pm2 --no-daemon start server.js",
-        "heroku-postbuild": "yarn build:server"
+        "heroku-postbuild": "yarn install --cwd client && yarn build:client"
     },
     "dependencies": {
         "@hapi/joi": "^17.1.0",

@@ -17,6 +17,15 @@ export const doSignUp = ({ name, email, password }) => {
         .then(handleAuthResponse);
 };
 
+export const doSendResetPWEmail = (data) => {
+    return apiHelper.postData('/api/reset_password', data);
+};
+
+export const doCreateNewPassword = (data, id, token) => {
+    const endpoint = `/api/change_password/${id}/${token}`;
+    return apiHelper.postData(endpoint, data);
+};
+
 export const getUser = () => {
     const token = getToken();
 
@@ -34,13 +43,14 @@ export const getUser = () => {
         });
 };
 
+export const getToken = () => {
+    return window.localStorage.getItem(tokenKey);
+};
+
+//Helpers
 export const logout = () => {
     window.localStorage.clear();
     return Promise.resolve();
-};
-
-export const getToken = () => {
-    return window.localStorage.getItem(tokenKey);
 };
 
 const handleAuthResponse = (res) => {

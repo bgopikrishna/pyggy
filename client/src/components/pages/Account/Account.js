@@ -13,7 +13,10 @@ const Account = () => {
                 Logout
             </button>
 
-            <p className="">Account specific features coming soon</p>
+            <p className="">
+                I'm working on a new version of this app with serverless stack.
+            </p>
+            <p>The coming version of app will also work in offline mode.</p>
 
             <p className="has-margin-50">
                 Code by{' '}

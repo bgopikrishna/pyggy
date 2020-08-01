@@ -4,11 +4,14 @@ import './styles/index.scss';
 import App from './app/App';
 import * as serviceWorker from './serviceWorker';
 import { AuthProvider } from './context/AuthContext';
+import { ToastProvider } from './components/common/Toast';
 
 ReactDOM.render(
-    <AuthProvider>
-        <App />
-    </AuthProvider>,
+    <ToastProvider>
+        <AuthProvider>
+            <App />
+        </AuthProvider>
+    </ToastProvider>,
     document.getElementById('root')
 );
 
