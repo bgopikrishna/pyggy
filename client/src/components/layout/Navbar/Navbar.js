@@ -32,9 +32,7 @@ const Navbar = () => {
                         to="/create"
                         className="button is-borderless has-background-white-ter has-text-centered w-100 is-flex justify-content-center has-padding-10 has-text-black-ter">
                         <span className="icon has-margin-auto">
-                            <i className="material-icons is-size-1">
-                                add_circle
-                            </i>{' '}
+                            <i className="material-icons">add_circle_outline</i>{' '}
                         </span>{' '}
                     </Link>
                 </li>

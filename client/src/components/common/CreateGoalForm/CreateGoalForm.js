@@ -81,7 +81,7 @@ const CreateGoalForm = ({
                     arrow_back
                 </span>{' '}
                 <h3 className="has-margin-auto has-text-primary title is-5">
-                    Goal Details
+                    {mode === 'create' ? 'Create New Goal' : 'Update Goal'}
                 </h3>
             </div>
 

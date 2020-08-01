@@ -1,9 +1,11 @@
-const { clearHash } = require('../services/cache');
+// const { clearHash } = require('../services/cache');
+/**
+ * Commenting out redis code for deploying to heroku (As it's not availabe for free plan)
+ */
+// async function clearRedisCache(req, res, next) {
+//     await next();
 
-async function clearRedisCache(req, res, next) {
-    await next();
+//     clearHash();
+// }
 
-    clearHash();
-}
-
-module.exports = clearRedisCache;
+// module.exports = clearRedisCache;

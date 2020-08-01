@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const genHasedPass = require('../utils/hash');
+const { SITE_URL } = require('../utils/constants');
 const User = require('../models/User/user.model');
 const { transporter, createMailOptions } = require('../utils/mailer');
 
@@ -16,7 +17,7 @@ async function createPWResetToken(req, res) {
             .send({ message: 'User not found with this Email' });
     }
     const token = user.generatePassResetToken();
-    const resetLink = `https://pyggy.netlify.app/change_pw/${user._id}/${token}`;
+    const resetLink = `${SITE_URL}account/change_password/${user._id}/${token}`;
 
     const mailOptions = createMailOptions(user.email, resetLink);
     try {

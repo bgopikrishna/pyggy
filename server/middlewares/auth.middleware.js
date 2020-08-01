@@ -8,18 +8,21 @@ const auth = async (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_KEY);
+        console.log(decoded);
+
         const { id, iat } = decoded;
-        const userFromDB = await User.findOne(id);
+        const userFromDB = await User.findById(id);
 
         const { lastPassUpdate } = userFromDB;
+        console.log(lastPassUpdate, userFromDB);
 
-        if (new Date(iat) > new Date(lastPassUpdate)) {
+        if (iat > new Date(lastPassUpdate).getTime() / 1000) {
             req.user = decoded;
             return next();
         }
         throw new Error('Invalid token, Password Recently Changed');
     } catch (error) {
-        res.status(400).send('Invalid Token');
+        res.status(401).send('Invalid Token');
     }
 };
 

@@ -14,7 +14,7 @@ export const GoalCardHeader = ({ goal, showMenu }) => {
     const handleArchive = () => {
         const message = `Are you sure you want to ${
             archived ? 'restore' : 'archive'
-        } this?`;
+            } this?`;
 
         const answer = window.confirm(message);
 
@@ -23,7 +23,7 @@ export const GoalCardHeader = ({ goal, showMenu }) => {
                 addToast({
                     message: `Goal ${goal.name} ${
                         archived ? 'restored' : 'archived'
-                    }`,
+                        }`,
                     type: 'info'
                 })
             );
@@ -46,7 +46,8 @@ export const GoalCardHeader = ({ goal, showMenu }) => {
                 .catch((err) =>
                     addToast({
                         message: 'Error deleting the goal',
-                        type: 'danger'
+                        type: 'danger',
+                        err
                     })
                 );
         }

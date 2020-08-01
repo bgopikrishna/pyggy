@@ -11,11 +11,11 @@ const getAllGoals = async (req, res) => {
     const { id: userId } = req.user;
 
     try {
-        const userGoals = await Goal.find({ user: userId })
-            // .populate('completed saved')
-            .cache({
-                key: userId
-            });
+        const userGoals = await Goal.find({ user: userId });
+        // .populate('completed saved')
+        // .cache({
+        //     key: userId
+        // });
         res.send({ goals: userGoals });
     } catch (error) {
         console.error(error);
